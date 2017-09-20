@@ -1,0 +1,13 @@
+0:damesshirts:Dames shirt
+1:damestruieneffen:Effen damestrui
+2:damestruien2kleur:2 Kleuren damestrui
+3:herenshirtsregular:Regular heren shirt
+4:kleutershirts:Kleuter shirt
+5:herenshirtsslimfit:Slimfit heren shirt
+6:babyrompers:Baby rompertje
+7:babyshirts:Baby shirt
+8:herentruieneffen:Effen herentrui
+9:herentruien2kleur:2 Kleuren herentrui
+10:kindershirts:Junior shirt
+11:maten.txt:
+12:damesshirts-oud:

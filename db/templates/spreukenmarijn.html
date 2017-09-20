@@ -1,0 +1,119 @@
+%GLOBAL_HEADER%
+
+<script language='javascript' type="text/javascript" >
+var lastLayer="%EERSTE_KLEUR%";
+
+function showLayer(layerName) {
+	document.getElementById(lastLayer).style.visibility = 'hidden';
+	document.getElementById(layerName).style.visibility = 'visible';
+	lastLayer = layerName;
+}
+
+function bestel() {
+
+	document.getElementById('besteld').style.visibility = 'visible';
+	newRequest();
+	req.open("POST", "http://www.shirtskv.nl/scripts/cart.php", false);
+	req.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+	var encoded = "";
+
+	var aantal=document.bestelForm.elements['aantal'].value
+	var productcode="s.001";
+	encoded = "action=add&qty="+aantal+"&id="+productcode+"&image=../images/boek.png&url=../spreukenmarijn.html";
+
+	req.send(encoded);
+	loadWinkelwagenCount();
+}
+
+</script>
+
+
+<style type="text/css">
+#infoData {
+     width:410px;
+     height:340px;
+     left:395px;
+     top:60px;
+     position:absolute;
+     margin:50px auto;
+     overflow:auto;
+ }
+#sluitLayer {
+     width:150px;
+     height:30px;
+     left:820px;
+     top:382px;
+     position:absolute;
+     margin:50px auto;
+     overflow:auto;
+ }
+#infolayerShirt {
+    width:1000px;
+    height:550px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin:-275px auto auto -500px;
+    visibility:hidden;
+ }
+</style>
+
+
+<div id="scroller" >
+
+
+<form name=bestelForm>
+
+
+<div style="position: absolute; left: 30px; top: 50px; width:620px">
+<p style="font-size: 10px">
+<b>De 16 geboden van Marijn van Hulten</b><br>
+<br>
+Marijn van Hulten is een helaas te vroeg overleden Beverwijker. <br>
+Zijn moeder heeft na zijn overlijden een A4tje met spreuken gevonden.
+De 16 geboden noemt ze het zelf. Er is een stukje over verschenen in het Noordhollands Dagblad afgelopen april.<br><br>
+Karen heeft bij elke spreuk een illustratie gemaakt en er een boekje van gemaakt en dit aangeboden aan de familie.
+Die reageerden zo enthousiast dat ze besloten er in grotere aantallen te drukken.<br><br>
+Het boekje wordt tegen kostprijs verkocht, zodat de prijs laag kan blijven en zoveel mogelijk mensen de gelegenheid
+hebben het boekje te kunnen kopen.<br>
+Het boekje is voor 7,95 inclusief verzendkosten te koop. <br>
+<br>
+<a href="../images/spreuken2.png" target=_blank><img src="../images/spreuken.png" border=0 ></a>
+<a href="../images/voorkant2.png" target=_blank><img src="../images/voorkant.png" border=0 ></a>
+<a href="../images/hart2.png" target=_blank><img src="../images/hart.png" border=0 ></a>
+<br>
+<br>
+Aantal:<input name="aantal" type="text" style="font-size: 9px" size=14 value="1" style="width: 70px">
+&nbsp;
+<a href="#" onclick="bestel()"><img src="../images/knop_bestellen.png" border=0></a>
+
+</form>
+
+
+
+
+
+</div>
+
+</div>
+
+
+<div id="besteld" style="position: absolute; left: 40px; top: 100px; width:550px; height:100px; border:1px double #000;background-color:#AAA;visibility:hidden ">
+<p>
+<br>
+&nbsp;<b>Dit item is toegevoegd aan het winkelmandje.</b><br>
+<br>
+&nbsp;<small>Het winkelwagentje is te openen via het winkelwagen icoontje bovenin de pagina.</small>
+<br>
+<br>
+
+&nbsp;<a href="#" onclick="document.getElementById('besteld').style.visibility = 'hidden';"><img src="../images/knop_verderwinkelen.png" border=0></a>
+<a href="#" onclick="window.location.href='http://www.shirtskv.nl/scripts/cart.php';"><img src="../images/knop_winkelwagenopenen.png" border=0></a>
+<br>
+</p>
+</div>
+
+</div>
+
+
+%GLOBAL_FOOTER%

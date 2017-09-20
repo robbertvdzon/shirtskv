@@ -1,0 +1,12 @@
+0:groen:
+1:blauw:
+2:bruin:
+3:grijs:
+4:rood:
+6:geel:
+7:oranje:
+8:zwart:
+10:roze:
+11:lichtblauw:
+12:donkerblauw:
+13:legergroen:

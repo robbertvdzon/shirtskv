@@ -1,0 +1,90 @@
+%GLOBAL_HEADER%
+%ALLSHIRTS_HEADER%
+
+<script language='javascript' type="text/javascript" >
+var lastLayer="%EERSTE_KLEUR%";
+
+function showLayer(layerName) {
+	document.getElementById(lastLayer).style.visibility = 'hidden';
+	document.getElementById(layerName).style.visibility = 'visible';
+	lastLayer = layerName;
+}
+
+function bestel() {
+
+	document.getElementById('besteld').style.visibility = 'visible';
+	newRequest();
+	req.open("POST", "http://www.shirtskv.nl/scripts/cart.php", false);
+	req.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+	var encoded = "";
+
+	var aantal=document.bestelForm.elements['aantal'].value
+	var productcode="s.001";
+	encoded = "action=add&qty="+aantal+"&id="+productcode+"&image=../images/boek.png&url=../spreukenmarijn.html";
+
+	req.send(encoded);
+	loadWinkelwagenCount();
+}
+
+</script>
+
+
+<style type="text/css">
+#infoData {
+     width:410px;
+     height:340px;
+     left:395px;
+     top:60px;
+     position:absolute;
+     margin:50px auto;
+     overflow:auto;
+ }
+#sluitLayer {
+     width:150px;
+     height:30px;
+     left:820px;
+     top:382px;
+     position:absolute;
+     margin:50px auto;
+     overflow:auto;
+ }
+#infolayerShirt {
+    width:1000px;
+    height:550px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin:-275px auto auto -500px;
+    visibility:hidden;
+ }
+</style>
+
+
+<div id="scroller" >
+
+
+
+<div style="position: absolute; left: 30px; top: 50px; width:620px">
+<p style="font-size: 10px">
+<b>Je kunt nu ook een eigen kledingstuk laten bedrukken met je favoriete shirtsKV figuur! </b><br><br>
+
+Broek, jas, tas, onderbroek, trui... het maakt niet uit. De kosten zijn &euro;&nbsp;12,95 voor een <a href="damesshirts/damesshirts_ryb_rood_detail.html"><u>gewone print</u></a> en &euro;&nbsp;13,95 voor de <a href="damesshirts/damesshirts_ryb-groot_Rood_detail.html"><u>grotere prints</u></a> uit de collectie. <br><br>
+Alle prints hebben vaste maten omdat deze in 1 keer geplot worden. <br>
+
+<img src="images/eigen-shirt.png" width=300>
+<br>
+
+Wil je een afwijkend formaat, bv heel klein of heel groot, dan komt er nog &euro; 5,00 boven op de prijs voor het extra plotwerk. <br><br>
+<a href=makingof.html><b>Klik hier om te zien hoe het bedrukken van een shirt/tas werkt.</b></a> <br><br>
+Stuur voor nadere informatie een mailtje naar <a href=mailto:info@shirtsKV.nl>info@shirtsKV.nl</a>.
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+%GLOBAL_FOOTER%

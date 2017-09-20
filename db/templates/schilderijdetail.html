@@ -1,0 +1,259 @@
+%GLOBAL_HEADER%
+
+%ALLDOEKEN_HEADER%
+
+<script type="text/javascript" >
+var lastLayer="orig";
+
+function showLayer(layerName) {
+	document.getElementById(lastLayer).style.visibility = 'hidden';
+	document.getElementById(layerName).style.visibility = 'visible';
+	lastLayer = layerName;
+   }
+
+function bestelOrigineel() {
+	document.getElementById('besteld').style.visibility = 'visible';
+	newRequest();
+	req.open("POST", "http://www.shirtskv.nl/scripts/cart.php", false);
+	req.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+	var encoded = "";
+
+	var productcode="%ORIG_PRODUCT_CODE%";
+	encoded = "action=add&qty=1&id="+productcode+"&image=%ORIGIMAGE1%&url=%ORIG_PAGE_LINK%";
+
+	req.send(encoded);
+	loadWinkelwagenCount();
+}
+
+function bestelReproductie() {
+	document.getElementById('besteld').style.visibility = 'visible';
+	newRequest();
+	req.open("POST", "http://www.shirtskv.nl/scripts/cart.php", false);
+	req.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+	var encoded = "";
+
+	var aantal=document.bestelReproForm.elements['aantal'].value
+	var maat=document.bestelReproForm.elements['maat'].value
+
+
+	var productcode="%REPRO_PRODUCT_CODE%."+maat;
+	encoded = "action=add&qty="+aantal+"&id="+productcode+"&image=%REPROIMAGE1%&url=%REPRO_PAGE_LINK%";
+
+	req.send(encoded);
+	loadWinkelwagenCount();
+}
+
+
+</script>
+
+
+<div id="scroller" >
+
+
+
+<div style="position: absolute; left: 0px; top: 505px; width:260 ">
+<p style="font-size: 9px">
+* Prijs is incl. BTW en excl. verzendkosten<br>
+</p>
+
+</div>
+
+
+<div style="position: absolute; left: 0px; top: 40px; width:300; ">
+<p><b>Origineel schilderij '%NAME%'</b></p>
+</div>
+
+<div style="position: absolute; left: 360px; top: 40px; width:300;">
+<p><b>Reproductie van het schilderij '%NAME%'</b></p>
+</div>
+
+
+<div style="position: absolute; left: 0px; top: 80px; ">
+<a href="#" onclick="PopupPic('%IMAGE_PAGE%','title',550,550);"><img src="%THISIMAGE3%" border=0 alt="shirts-%NAME%" title=""></a><br>
+</div>
+
+
+<div style="position: absolute; left: 360px; top: 80px; ">
+<a href="#" onclick="PopupPic('%REPRO_IMAGE_PAGE%','title',550,550);"><img src="%REPROIMAGE3%" border=0 alt="shirts-%NAME%" title=""></a><br>
+</div>
+
+
+<div style="position: absolute; left: 0px; top: 350px; width:300; ">
+<p style="font-size: 9px">De originele acrylverf op canvas schilderijen zijn handgeschilderd en worden maar 1 keer geproduceerd.<br>
+Hierdoor kan het zijn dat een schilderij al verkocht is of dat het schilderij niet beschikbaar is voor verkoop.
+</p>
+</div>
+
+<div style="position: absolute; left: 360px; top: 350px; width:300;">
+<p style="font-size: 9px">De reproducties zijn gedigitaliseerde versies van het originele schilderij. Deze worden op canvas geprint en kan verkocht worden in verschillende maten.
+</p>
+</div>
+
+
+
+
+<div style="position: absolute; left: 430px; top: 5px; width:160">
+<a href="%PREVIOUS_DETAIL_PAGE%"><img name="vorige_plaatje" src="../images/knop_vorige.png" border=0 alt="vorige" title=""></a>
+<a href="%NEXT_DETAIL_PAGE%"><img name="volgende_plaatje" src="../images/knop_volgende.png" border=0 alt="volgende" title=""></a>
+<a href="index.html"><img name="terug_plaatje" src="../images/knop_terug.png" border=0 alt="terug" title=""></a>
+</div>
+
+
+<div style="position: absolute; left: 0px; top: 395px; width:300;">
+<p>
+<table width=270 >
+
+<tr>
+<td colspan=3 style="font-size: 9px">
+<br><b>Origineel bestellen:</b>
+</td>
+</tr>
+
+<tr>
+<td style="font-size: 9px">
+Code
+</td>
+<td style="font-size: 9px">
+:
+</td>
+<td style="font-size: 9px">
+%ORIG_PRODUCT_CODE%
+</td>
+</tr>
+<tr>
+<tr>
+<td style="font-size: 9px">
+Maat
+</td>
+<td style="font-size: 9px">
+:
+</td>
+<td style="font-size: 9px">
+%ORIG_SIZE%
+</td>
+</tr>
+<tr>
+<td style="font-size: 9px">
+Prijs
+</td>
+<td style="font-size: 9px">
+:
+</td>
+<td style="font-size: 9px">
+%PRICE%
+</td>
+</tr>
+
+<tr>
+<td colspan=3 style="font-size: 9px">
+<a href="#" id="bestelOrigButton" onclick="bestelOrigineel()"><img src="../images/knop_bestelorigineel.png" border=0></a>
+</td>
+</tr>
+
+</table>
+</p>
+</div>
+
+
+
+
+<div style="position: absolute; left: 360px; top: 395px; width:300;">
+<p>
+<form name="bestelReproForm">
+<table width=270 >
+
+<tr>
+<td colspan=3 style="font-size: 9px">
+<br><b>Reproductie bestellen:</b>
+</td>
+</tr>
+
+<tr>
+<td style="font-size: 9px">
+Code
+</td>
+<td style="font-size: 9px">
+:
+</td>
+<td style="font-size: 9px">
+%REPRO_PRODUCT_CODE%
+</td>
+</tr>
+<tr height=25>
+<td style="font-size: 9px">
+Maat
+</td>
+<td style="font-size: 9px">
+:
+</td>
+<td style="font-size: 9px" >
+<select name="maat" style="width: 150px">
+%MAAT_OPTIONS%
+</select>
+</td>
+</tr>
+
+<tr height=25>
+<td style="font-size: 9px">
+Aantal
+</td>
+<td style="font-size: 9px">
+:
+</td>
+<td style="font-size: 9px">
+<input name="aantal" type="text" size=14 value="1" style="width: 150px">
+</option><td>
+</td>
+</tr>
+
+
+
+<tr>
+<td colspan=3 style="font-size: 9px">
+<a href="#" onclick="bestelReproductie()"><img src="../images/knop_bestelreproductie.png" border=0></a>
+</td>
+</tr>
+
+</table>
+</form>
+</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+<div id="besteld" style="position: absolute; left: 330px; top: 240px; width:550px; height:100px; border:1px double #000;background-color:#AAA;visibility:hidden ">
+<p>
+<br>
+&nbsp;<b>Het schilderij is toegevoegd aan het winkelmandje.</b><br>
+<br>
+&nbsp;<small>Het winkelwagentje is te openen via het winkelwagen icoontje bovenin de pagina.</small>
+<br>
+<br>
+
+&nbsp;<a href="#" onclick="document.getElementById('besteld').style.visibility = 'hidden';"><img src="../images/knop_verderwinkelen.png" border=0></a>
+<a href="#" onclick="window.location.href='http://www.shirtskv.nl/scripts/cart.php';"><img src="../images/knop_winkelwagenopenen.png" border=0></a>
+<br>
+</p>
+</div>
+
+</div>
+
+
+<script type="text/javascript" >
+if (%NIET_TE_KOOP% || %VERKOCHT%){
+	document.getElementById('bestelOrigButton').style.visibility = 'hidden';
+}
+</script>
+
+%GLOBAL_FOOTER%

@@ -1,0 +1,73 @@
+%GLOBAL_HEADER%
+
+<script language='javascript' type="text/javascript" >
+var lastLayer="%EERSTE_KLEUR%";
+
+function showLayer(layerName) {
+	document.getElementById(lastLayer).style.visibility = 'hidden';
+	document.getElementById(layerName).style.visibility = 'visible';
+	lastLayer = layerName;
+}
+
+function bestel() {
+
+	document.getElementById('besteld').style.visibility = 'visible';
+	newRequest();
+	req.open("POST", "http://www.shirtskv.nl/scripts/cart.php", false);
+	req.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+	var encoded = "";
+
+	var aantal=document.bestelForm.elements['aantal'].value
+	var productcode="s.001";
+	encoded = "action=add&qty="+aantal+"&id="+productcode+"&image=../images/boek.png&url=../spreukenmarijn.html";
+
+	req.send(encoded);
+	loadWinkelwagenCount();
+}
+
+</script>
+
+
+<style type="text/css">
+#infoData {
+     width:410px;
+     height:340px;
+     left:395px;
+     top:60px;
+     position:absolute;
+     margin:50px auto;
+     overflow:auto;
+ }
+#sluitLayer {
+     width:150px;
+     height:30px;
+     left:820px;
+     top:382px;
+     position:absolute;
+     margin:50px auto;
+     overflow:auto;
+ }
+#infolayerShirt {
+    width:1000px;
+    height:550px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin:-275px auto auto -500px;
+    visibility:hidden;
+ }
+</style>
+
+
+<div id="scroller" >
+
+<img src="images/makingof.png" border=0 alt="shirts-Vis"  title=""><br>
+
+</div>
+
+
+
+</div>
+
+
+%GLOBAL_FOOTER%

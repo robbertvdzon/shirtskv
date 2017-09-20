@@ -1,0 +1,86 @@
+%GLOBAL_HEADER%
+%ALLDOEKEN_HEADER%
+<script language='javascript' type="text/javascript" >
+var lastLayer="%EERSTE_KLEUR%";
+
+function showLayer(layerName) {
+	document.getElementById(lastLayer).style.visibility = 'hidden';
+	document.getElementById(layerName).style.visibility = 'visible';
+	lastLayer = layerName;
+}
+
+function bestel() {
+
+	document.getElementById('besteld').style.visibility = 'visible';
+	newRequest();
+	req.open("POST", "http://www.shirtskv.nl/scripts/cart.php", false);
+	req.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+	var encoded = "";
+
+	var aantal=document.bestelForm.elements['aantal'].value
+	var productcode="s.001";
+	encoded = "action=add&qty="+aantal+"&id="+productcode+"&image=../images/boek.png&url=../spreukenmarijn.html";
+
+	req.send(encoded);
+	loadWinkelwagenCount();
+}
+
+</script>
+
+
+<style type="text/css">
+#infoData {
+     width:410px;
+     height:340px;
+     left:395px;
+     top:60px;
+     position:absolute;
+     margin:50px auto;
+     overflow:auto;
+ }
+#sluitLayer {
+     width:150px;
+     height:30px;
+     left:820px;
+     top:382px;
+     position:absolute;
+     margin:50px auto;
+     overflow:auto;
+ }
+#infolayerShirt {
+    width:1000px;
+    height:550px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin:-275px auto auto -500px;
+    visibility:hidden;
+ }
+</style>
+
+
+<div id="scroller" >
+
+<div style="position: absolute; left: 30px; top: 50px; width:620px">
+<p style="font-size: 10px">
+<b>Schilderij op eigen doek!</b><br>
+<br>
+<img src="images/nieuws/stof/stof.png" >
+<br>
+Het is ook mogelijk om een eigen stof aan te leveren en die door shirtsKV.nl op laten spannen en laten beschilderen met een figuur uit de collectie.<br>
+De kosten voor een 40x40 schilderij is &euro;&nbsp;40,00 maar het kan natuurlijk ook op andere formaten. <br>
+<br>
+Stuur een mailtje naar <a href=mailto:info@shirtsKV.nl>info@shirtsKV.nl</a> voor meer informatie.
+
+
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+%GLOBAL_FOOTER%

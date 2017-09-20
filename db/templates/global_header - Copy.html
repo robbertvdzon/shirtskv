@@ -1,0 +1,587 @@
+<html>
+<head>
+<title>%PAGE_TITLE%</title>
+<meta name="description" content="shirtsKV.nl is een webshop vol leuke vrolijke schilderijen, kleding en tassen voor volwassenen, jeugd, kinderen en baby's voor een betaalbare prijs">
+<meta name="keywords" content="leuk,vrolijk,t-shirt,shirt,schilderij,tas,kind,dames,heren,baby">
+%EXTRA_METADATA%
+<script type="text/javascript" >
+var req;
+var winkelwagenReq;
+var loginReq;
+var loginReq2;
+var logReq;
+
+// Get an XMLHttpRequest object in a portable way.
+function newRequest()
+{
+ req = false;
+ // For Safari, Firefox, and other non-MS browsers
+ if (window.XMLHttpRequest) {
+   try {
+     req = new XMLHttpRequest();
+   } catch (e) {
+     req = false;
+   }
+ } else if (window.ActiveXObject) {
+   // For Internet Explorer on Windows
+   try {
+     req = new ActiveXObject("Msxml2.XMLHTTP");
+   } catch (e) {
+     try {
+       req = new ActiveXObject("Microsoft.XMLHTTP");
+     } catch (e) {
+       req = false;
+     }
+   }
+ }
+}
+
+function handler() {
+	if(this.readyState == 4 && this.status == 200) {
+		try {
+			var result = winkelwagenReq.responseText;
+			var tekst = "";
+			if (result=="0"){
+			}
+			else if (result=="1"){
+				tekst="&nbsp;&nbsp;1 artikel";
+			}
+			else{
+				tekst=result+" artikelen";
+			}
+			document.getElementById('winkelwagencounter').innerHTML = "<p><font size=3 color=#000000><b>"+tekst+"</b></font></p>";
+		} catch (e) {
+		}
+	}
+}
+
+function logAccess() {
+   newRequest();
+   logReq = req;
+   logReq.open("POST", "http://www.shirtskv.nl/scripts/addlog.php", true);
+   logReq.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+   var encoded = "";
+   var pagename=window.location.pathname;
+   encoded = "page="+pagename;
+   logReq.send(encoded);
+}
+
+function loadWinkelwagenCount() {
+  try{
+   newRequest();
+   winkelwagenReq = req;
+   winkelwagenReq.open("POST", "http://www.shirtskv.nl/scripts/cartcount.php", true);
+   winkelwagenReq.onreadystatechange = handler;
+   winkelwagenReq.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+   var encoded = "";
+   var pagename=window.location.pathname;
+   encoded = "page="+pagename;
+   winkelwagenReq.send(encoded);
+  } catch (e) {
+  }
+}
+
+
+
+function logoff() {
+   newRequest();
+   loginReq = req;
+   loginReq.open("POST", "http://www.shirtskv.nl/scripts/logoff.php", true);
+//   loginReq.open("POST", "../scripts/login.php", true);
+   loginReq.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+   var encoded = "";
+   loginReq.send(encoded);
+
+	document.getElementById('logoffbutton').style.visibility = 'hidden';
+	document.getElementById('logonbutton').style.visibility = 'visible';
+	document.getElementById('loggedin_username').innerHTML = "";
+ 	getLoginUser();
+
+}
+
+
+function login() {
+  try{
+   username = document.getElementById('username').value;
+   password = document.getElementById('password').value;
+   newRequest();
+   loginReq = req;
+   loginReq.open("POST", "http://www.shirtskv.nl/scripts/login.php", true);
+//   loginReq.open("POST", "../scripts/login.php", true);
+
+   loginReq.onreadystatechange = function () {
+	 if (req.readyState != 4) return;
+	 if (req.status != 200 && req.status != 304) {
+	 	alert('Error tijdens inloggen');
+		return;
+	 }
+	 var result = loginReq.responseText;
+	 if (result=="OK"){
+	 	alert('Inloggen is gelukt');
+	 	document.getElementById('loginLayer').style.visibility = 'hidden';
+	 	getLoginUser();
+
+	 }
+	 else{
+	 	alert('Ongeldige gebruikersnaam of wachtwoord');
+	 }
+   }
+
+   loginReq.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+   var encoded = "";
+   encoded = "user="+username+"&pass="+password;
+   loginReq.send(encoded);
+
+  } catch (e) {
+  }
+
+}
+
+function getLoginUser() {
+	try
+	  {
+		document.getElementById('logonbutton').style.visibility = 'visible';
+		document.getElementById('logoffbutton').style.visibility = 'hidden';
+   newRequest();
+   loginReq2 = req;
+   loginReq2.open("POST", "http://www.shirtskv.nl/scripts/getlogin.php", true);
+//   loginReq.open("POST", "../scripts/login.php", true);
+
+   loginReq2.onreadystatechange = function () {
+	 if (req.readyState != 4) return;
+	 if (req.status != 200 && req.status != 304) {
+		return;
+	 }
+	 var result = loginReq2.responseText;
+	 document.getElementById('loggedin_username').innerHTML = "<table><tr><td width=300 align=right><font size=2 color=#eeee00><b>"+result+"</b></font></td></tr></table>";
+	 if (result!=""){
+	   try
+       {
+         document.getElementById('logonbutton').style.visibility = 'hidden';
+         document.getElementById('logoffbutton').style.visibility = 'visible';
+       }
+       catch(err)
+       {
+         alert("Error bij zetten button 2"+err);
+       }
+  	 }
+   }
+
+   loginReq2.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+   var encoded = "";
+   loginReq2.send(encoded);
+  	}
+	catch(err)
+  	{
+	}
+
+}
+
+
+function FitPic() {
+      iWidth = (NS)?window.innerWidth:document.body.clientWidth;
+      iHeight = (NS)?window.innerHeight:document.body.clientHeight;
+      iWidth = document.images[0].width - iWidth;
+      iHeight = document.images[0].height - iHeight;
+      window.resizeBy(iWidth, iHeight);
+      self.focus();
+      }
+
+function PopupPic(sPicURL, title,w,h) {
+    var winl = (screen.width - w) / 2;
+    var wint = (screen.height - h) / 2;
+    winprops = 'height='+h+',width='+w+',top='+wint+',left='+winl+'resizable=0'
+        window.open(sPicURL, title, winprops)
+  }
+
+  //logAccess();
+  loadWinkelwagenCount();
+  getLoginUser();
+
+
+</script>
+
+<style type="text/css">
+
+A:link    {color: #000000;text-decoration : none;}
+A:visited {color: #000000;text-decoration : none;}
+A:active {color: #000000;text-decoration : none;}
+A:hover {color: #ff0000;text-decoration : none;}
+
+
+/* Default fields */
+td, th, p, ul, ol, li, sub, sup {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #000000;
+	font-size: 11px}
+
+#header, #footer {
+  display: none;
+  }
+
+body {
+     background-color:#fff;
+
+}
+
+
+#scroller {
+     width:700px;
+     left:165px;
+     top:110px;
+     position:absolute;
+     border:0px double #000;
+     background-color:#fff;
+     margin:50px auto;
+     overflow:auto;
+	 min-height:550px;
+	 height: expression( this.scrollHeight < 550 ? "550px" : "auto" )
+
+ }
+
+#screenCenter {
+    width:1000px;
+    position:absolute;
+    top:0;
+    left:50%;
+    margin:0px auto auto -500px;
+    border:0px solid #F00;
+    background-color:transparent;
+}
+
+#screenCenterLayer2 {
+    width:1000px;
+    position:absolute;
+    top:0;
+    left:50%;
+    margin:0px auto auto -500px;
+    border:0px solid #F00;
+    background-color:transparent;
+}
+
+
+#backgroundImageMiddle {
+    width:1000px;
+    height:100%;
+    position:absolute;
+    top:115;
+    left:50%;
+    margin:0px auto auto -500px;
+    border:0px solid #0f0;
+    background-color:#fff;
+    background-image: url(../images/achtergrond_midden.png);
+    background-color:transparent;
+}
+
+#backgroundImageLineAbove {
+    width:1000px;
+    height:3px;
+    position:absolute;
+    top:112;
+    left:50%;
+    margin:0px auto auto -500px;
+    background-color:#0ff;
+    background-image: url(../images/lijn.png);
+    background-color:transparent;
+    border:0px solid #FF0;
+    background-repeat:no-repeat;
+}
+
+#backgroundImageLineBelow {
+    width:1000px;
+    height:3px;
+    position:absolute;
+    top:215;
+    left:50%;
+    margin:0px auto auto -500px;
+    border:0px solid #0f0;
+    background-color:#fff;
+    background-image: url(../images/lijn.png);
+    background-color:transparent;
+    background-repeat:no-repeat;
+    visibility:hidden;
+}
+
+
+#backgroundImageAll {
+    width:1000px;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:50%;
+    margin:0px auto auto -500px;
+    border:0px solid #00f;
+    background-color:#fff;
+    background-image: url(../images/achtergrond_jute.png);
+    background-repeat:repeat-y;
+}
+
+#bottomlayer {
+    width:1000px;
+    height:30px;
+    position:absolute;
+    top:0;
+    left:50%;
+    margin:0px auto auto -500px;
+    border:0px solid #00f;
+    background-color:#fff;
+    background-repeat:repeat-y;
+    background-color:transparent;
+    visibility:hidden;
+
+}
+
+
+
+</style>
+
+
+<script type="text/javascript">
+
+
+
+function resize(){
+
+
+  var htmlheight = document.getElementById('scroller').scrollHeight;
+  if (htmlheight<550) htmlheight = 550;
+  htmlheight = htmlheight + 100;//top scroller
+
+  var pageheight = htmlheight + 150;//extra
+
+  var frameMiddle = document.getElementById('backgroundImageMiddle');
+  var framePage = document.getElementById('backgroundImageAll');
+  var bottomlayerPage = document.getElementById('bottomlayer');
+  var bottomlinePage = document.getElementById('backgroundImageLineBelow');
+
+
+  try{
+  		frameMiddle.style.height = htmlheight + "px";
+  		var pageheight=htmlheight+160;
+  		framePage.style.height = pageheight + "px";
+  		var topBottom=pageheight-45;
+  		bottomlayerPage.style.top = topBottom + "px";
+  		bottomlinePage.style.top = topBottom + "px";
+ }
+ catch(err)
+ {
+       alert("error");
+ }
+ bottomlayerPage.style.visibility="visible";
+ bottomlinePage.style.visibility="visible";
+
+}
+
+</script>
+
+
+<script type="text/javascript">
+
+
+var shirtRowCount;
+shirtRowCount=0;
+
+window.onload=resize;
+
+</script>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-9088919-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</head>
+
+
+<body>
+
+
+
+
+
+%EXTRA_BODY%
+
+
+
+<div id="backgroundImageAll" name="backgroundImageAll">
+</div>
+
+
+
+<div id="screenCenterLayer2" >
+
+	<div style="position: absolute; left: 0px; top: 130px;">
+	<img src="../images/subbuttons/achtergr-vis.png" border=0  title="">
+	</div>
+
+	<div style="position: absolute; left: 280px; top: 0px;">
+	<img src="../images/subbuttons/achtergr-opzekop.png" border=0  title="">
+	</div>
+
+	<div style="position: absolute; left: 880px; top: 0px;">
+	<img src="../images/subbuttons/achtergr-arm.png" border=0  title="">
+	</div>
+
+	<div style="position: absolute; left: 65px; top: 300px;">
+	<img src="../images/subbuttons/achtergr-huisstofmijt.png" border=0  title="">
+	</div>
+
+	<div style="position: absolute; left: 0px; top: 0px;">
+	<a href="../index.html">
+	<img src="../images/logo_shirtskv.png" border=0 alt="shirtskv-logo" title="">
+	</a>
+	</div>
+
+
+</div>
+
+<div id="backgroundImageMiddle" name="backgroundImageMiddle" >
+</div>
+
+
+<div id="backgroundImageLineAbove" name="backgroundImageLineAbove" >
+</div>
+
+<div id="backgroundImageLineBelow" name="backgroundImageLineBelow" >
+</div>
+
+
+
+<div id="bottomlayer" name="bottomlayer" >
+
+	<div style="position: absolute; left: 150px; top: 5px;">
+	<a href="../info/info.html" >
+	<img src="../images/subbuttons/bottom-voorwaarden.png" border=0 alt="shirtskv-voorwaarden" title="">
+	</a>
+
+	<img src="../images/subbuttons/bottom-sterretje.png" border=0 >
+
+	<a href="../info/contact.html" >
+	<img src="../images/subbuttons/bottom-contact.png" border=0 alt="shirtskv-contact" title="">
+	</a>
+
+	<img src="../images/subbuttons/bottom-sterretje.png" border=0 >
+
+	<a href="http://www.shirtskv.nl/scripts/cart.php" >
+	<img src="../images/subbuttons/bottom-winkelwagen.png" border=0 alt="shirtskv-winkelwagen" title="">
+	</a>
+	</div>
+
+	<div style="position: absolute; left: 640px; top: 10px;">
+	<a target=_blank href="http://www.karenvleugel.nl" >
+	<img src="../images/karenvleugel.png" border=0 alt="www.karenvleugel.nl" title="">
+	</a>
+	</div>
+
+</div>
+
+
+<div id="screenCenter" name="screenCenter">
+
+
+
+
+
+<div style="position: absolute; left: 443px; top: 0px;">
+<img src="%HEADER_IMAGE%" border=0 alt="shirtskv-header" title="">
+</div>
+
+
+
+<!--
+<div id="loggedin_username" style="position: absolute; left: 615px; top: 9px;">
+</div>
+
+<div id="logonbutton" style="position: absolute; left: 930px; top: 9px;visibility:hidden">
+<a href="#" onclick="document.getElementById('loginLayer').style.visibility='visible';"><img src="../images/knop_inloggen.png" border=0></a>
+</div>
+
+<div id="logoffbutton" style="position: absolute; left: 925px; top: 9px;visibility:hidden">
+<a href="#" onclick="logoff();"><img src="../images/knop_uitloggen.png" border=0></a>
+</div>
+-->
+
+
+<div style="position: absolute; left: 20px; top: 180px; ">
+<a href="../kleding.html" onmouseover="shirt_plaatje.src='../images/shirt2.png';" onmouseout="shirt_plaatje.src='../images/shirt.png';"><img name="shirt_plaatje" src="../images/shirt.png" border=0 alt="shirtskv-shirts" title=""></a>
+</div>
+
+<div style="position: absolute; left: 20px; top: 280px;">
+<a href="../doeken.html" onmouseover="schilderij_plaatje.src='../images/schilderij2.png';" onmouseout="schilderij_plaatje.src='../images/schilderij.png';"><img name="schilderij_plaatje" src="../images/schilderij.png" border=0 alt="shirtskv-schilderij" title=""></a>
+</div>
+<!--
+<div style="position: absolute; left: 20px; top: 380px;">
+<a href="../tassen.html" onmouseover="tas_plaatje.src='../images/tas2.png';" onmouseout="tas_plaatje.src='../images/tas.png';"><img name="tas_plaatje" src="../images/tas.png" border=0 alt="shirtskv-tas" title=""></a>
+</div>
+-->
+<div style="position: absolute; left: 30px; top: 490px;">
+<a href="../spreukenboekje/spreukenboekje.html" onmouseover="boek_plaatje.src='../images/boek.png';" onmouseout="boek_plaatje.src='../images/boek2.png';"><img name="boek_plaatje" src="../images/boek2.png" border=0 alt="Spreuken Marijn" title=""></a>
+</div>
+
+<div style="position: absolute; left: 20px; top: 580px;">
+<a href="../kleurplaat/kleurplaten.html" onmouseover="kleurplaat_plaatje.src='../images/kleuren2.png';" onmouseout="kleurplaat_plaatje.src='../images/kleuren1.png';"><img name="kleurplaat_plaatje" src="../images/kleuren1.png" border=0 alt="shirtskv-kleurplaat" title=""></a>
+</div>
+
+<div style="position: absolute; left: 880px; top: 110px;">
+<a href="http://www.facebook.com/pages/shirtsKVnl/106792909359371" target=_blank>
+<img src="../images/subbuttons/facebook.png" border=0 alt="shirtskv-logo" title="">
+</a>
+</div>
+
+<div style="position: absolute; left: 880px; top: 160px;">
+<a href="http://shirtskv.hyves.nl" target=_blank>
+<img src="../images/subbuttons/hyves.png" border=0 alt="shirtskv-logo" title="">
+</a>
+</div>
+
+<div style="position: absolute; left: 880px; top: 210px;">
+<a href="http://twitter.com/shirtskv" target=_blank>
+<img src="../images/subbuttons/twitter.png" border=0 alt="shirtskv-logo" title="">
+</a>
+</div>
+
+
+
+<div style="position: absolute; left: 900px; top: 270px;">
+<a href="http://www.shirtskv.nl/scripts/cart.php" onmouseover="winkelwagen_plaatje.src='../images/winkelwagen2.png';" onmouseout="winkelwagen_plaatje.src='../images/winkelwagen.png';"><img name="winkelwagen_plaatje" src="../images/winkelwagen.png" border=0 alt="shirtskv-winkelwagen" title=""></a>
+</div>
+
+
+<div style="position: absolute; left: 900px; top: 350px;">
+<a href="../wiezijnwij.html" onmouseover="wij_plaatje.src='../images/wij.png';" onmouseout="wij_plaatje.src='../images/wij2.png';"><img name="wij_plaatje" src="../images/wij2.png" border=0 alt="Wie zijn wij" title=""></a>
+</div>
+
+
+<div style="position: absolute; left: 900px; top: 435px;">
+<a href="../nieuwsbrief/nieuwsbrieven.html" onmouseover="nieuwsbrief_plaatje.src='../images/nwsbrf2.png';" onmouseout="nieuwsbrief_plaatje.src='../images/nwsbrf.png';"><img name="nieuwsbrief_plaatje" src="../images/nwsbrf.png" border=0 alt="shirtskv-nieuwsbrief" title=""></a>
+</div>
+
+<div style="position: absolute; left: 890px; top: 520px;">
+<a href="../fotos/fotos.html" onmouseover="fototoestel_plaatje.src='../images/fototoestel2.png';" onmouseout="fototoestel_plaatje.src='../images/fototoestel.png';"><img name="fototoestel_plaatje" src="../images/fototoestel.png" border=0 alt="shirtskv-fototoestel" title=""></a>
+</div>
+
+<div style="position: absolute; left: 890px; top: 615px;">
+<a href="../videos.html" onmouseover="filmcamera_plaatje.src='../images/filmcamera2.png';" onmouseout="filmcamera_plaatje.src='../images/filmcamera.png';"><img name="filmcamera_plaatje" src="../images/filmcamera.png" border=0 alt="shirtskv-filmcamera" title=""></a>
+</div>
+
+<div id="winkelwagencounter" style="position: absolute; left: 890px; top: 338px;">
+</div>
+
+
+<!--
+<div style="position: absolute; left: 900px; top: 550px;">
+<a href="../info/info.html" onmouseover="voorwaarden_plaatje.src='../images/voorwaarden2.png';" onmouseout="voorwaarden_plaatje.src='../images/voorwaarden.png';"><img name="voorwaarden_plaatje" src="../images/voorwaarden.png" border=0 alt="shirtskv-voorwaarden"></a>
+</div>
+-->
+

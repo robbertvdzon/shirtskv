@@ -1,0 +1,97 @@
+%GLOBAL_HEADER%
+
+
+<script type="text/javascript" >
+
+function addNews() {
+	if (document.getElementById('naam').value==""){
+		alert("Naam is niet ingevuld");
+		return;
+	}
+	if (document.getElementById('email').value==""){
+		alert("Email adres is niet ingevuld");
+		return;
+	}
+
+   newRequest();
+   logReq = req;
+   logReq.open("POST", "http://www.shirtskv.nl/scripts/addEmail.php", true);
+   logReq.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+   var encoded = "";
+   var email=document.getElementById('email').value
+   var name=document.getElementById('naam').value
+   encoded = "email="+email+"&name="+name;
+   logReq.send(encoded);
+   document.getElementById('addNieuwsbrief').style.visibility = 'hidden';
+   alert("Het email adres is toegevoegd aan de mailling lijst");
+
+}
+
+function removeNews() {
+	if (document.getElementById('email').value==""){
+		alert("Email adres is niet ingevuld");
+		return;
+	}
+   newRequest();
+   logReq = req;
+   logReq.open("POST", "http://www.shirtskv.nl/scripts/removeEmail.php", true);
+   logReq.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+   var encoded = "";
+   var email=document.getElementById('email').value
+   encoded = "email="+email+"&name="+name;
+   logReq.send(encoded);
+   document.getElementById('addNieuwsbrief').style.visibility = 'hidden';
+   alert("Het email adres is verwijderd uit de mailling lijst");
+
+}
+
+
+</script>
+
+<div id="scroller" >
+<a href="#" onclick="document.getElementById('addNieuwsbrief').style.visibility = 'visible';"><img src="../images/knop_klikhier-inuitschrijven.png" border=0></a>
+<p>
+%NIEUWS_BRIEVEN%
+</p>
+</div>
+
+
+
+
+<div id="addNieuwsbrief" style="position: absolute; left: 400px; top: 250px; width:450px; height:150px; border:1px double #000;background-color:#AAA; visibility:hidden">
+<div style="position: absolute; left: 10px; top: 10px;">
+<p>
+Schijf je nu in om lid te worden van de digitale nieuwsbrief.<br>
+<br>
+<form name="nieuws">
+<table>
+<tr>
+<td>
+Naam
+</td>
+<td>
+: <input type="text" id="naam" name="naam" size=30>
+</td>
+</tr>
+<tr>
+<td>
+E-mailadres
+</td>
+<td>
+: <input type="text" id="email" name="email" size=30>
+</td>
+</tr>
+</table>
+</form>
+<a href="#" onclick="document.getElementById('addNieuwsbrief').style.visibility = 'hidden';"><img src="../images/knop_sluit.png" border=0></a>
+<a href="#" onclick="addNews();"><img src="../images/knop_inschrijven.png" border=0></a>
+<a href="#" onclick="removeNews();"><img src="../images/knop_uitschrijven.png" border=0></a>
+<br>
+</p>
+</div>
+</div>
+
+
+
+%GLOBAL_FOOTER%
+

@@ -1,0 +1,3 @@
+0:s:Slim-Fit
+1:r:Normaal
+2:thumb:

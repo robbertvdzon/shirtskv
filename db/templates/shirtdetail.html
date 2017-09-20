@@ -1,0 +1,221 @@
+%GLOBAL_HEADER%
+
+%ALLSHIRTS_HEADER%
+
+<script language='javascript' type="text/javascript" >
+var lastLayer="%EERSTE_KLEUR%";
+
+function showLayer(layerName) {
+	document.getElementById(lastLayer).style.visibility = 'hidden';
+	document.getElementById(layerName).style.visibility = 'visible';
+	lastLayer = layerName;
+}
+
+function bestel() {
+	document.getElementById('besteld').style.visibility = 'visible';
+	newRequest();
+	req.open("POST", "http://www.shirtskv.nl/scripts/cart.php", false);
+	req.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+	var encoded = "";
+
+	var aantal=document.bestelForm.elements['aantal'].value
+	var maat=document.bestelForm.elements['maat'].value
+	var productcode="%PRODUCT_CODE%."+maat;
+	encoded = "action=add&qty="+aantal+"&id="+productcode+"&image=%IMAGE1%&url=%PAGE_LINK%";
+
+	req.send(encoded);
+	loadWinkelwagenCount();
+}
+
+</script>
+
+
+<style type="text/css">
+#infoData {
+     width:410px;
+     height:340px;
+     left:395px;
+     top:60px;
+     position:absolute;
+     margin:50px auto;
+     overflow:auto;
+ }
+#sluitLayer {
+     width:150px;
+     height:30px;
+     left:820px;
+     top:382px;
+     position:absolute;
+     margin:50px auto;
+     overflow:auto;
+ }
+#infolayerShirt {
+    width:1000px;
+    height:550px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin:-275px auto auto -500px;
+    visibility:hidden;
+ }
+</style>
+
+
+<div id="scroller" >
+
+
+<div style="position: absolute; left: 10px; top: 10px;">
+%KLEUR_LINKS%
+</div>
+
+<div style="position: absolute; left: 120px; top: 10px; ">
+
+
+<div style="position: absolute; left: 0px; top: 20px; ">
+<a href="#" onclick="PopupPic('%IMAGE_PAGE%','title',400,550);"><img src="%IMAGE3%" border=0 alt="shirts-%NAME%" title=""></a><br>
+</div>
+
+<div style="position: absolute; left: 320px; top: 5px; width:160">
+<a href="%PREVIOUS_DETAIL_PAGE%"><img name="vorig_plaatje" src="../images/knop_vorige.png" border=0 alt="vorige" title=""></a>
+<a href="%NEXT_DETAIL_PAGE%"><img name="volgende_plaatje" src="../images/knop_volgende.png" border=0 alt="volgende" title=""></a>
+<a href="index.html"><img name="terug_plaatje" src="../images/knop_terug.png" border=0 alt="terug" title=""></a>
+</div>
+
+<div style="position: absolute; left: 0px; top: 0px; width:300; ">
+<p style="font-size: 10px">
+<b>"%OMSCHRIJVING%"</b>
+</p>
+</div>
+
+<div style="position: absolute; left: 240px; top: 60px; ">
+<p>
+<form name="bestelForm">
+
+<table width=270 >
+
+<tr>
+<td colspan=3 height=60 valign=top style="font-size: 9px">
+
+%EXTRA_TEXT%
+
+</td>
+</tr>
+
+<tr>
+
+
+
+<tr>
+<td colspan=3 style="font-size: 9px">
+<br><br><b>Direct bestellen:</b>
+</td>
+</tr>
+
+<tr>
+<td style="font-size: 9px">
+Code
+</td>
+<td style="font-size: 9px">
+:
+</td>
+<td style="font-size: 9px">
+%PRODUCT_CODE%
+</td>
+</tr>
+
+
+<tr>
+<td style="font-size: 9px">
+Prijs
+</td>
+<td style="font-size: 9px">
+:
+</td>
+<td style="font-size: 9px">
+&euro; %MIN_PRICE%
+</td>
+</tr>
+
+<tr>
+<td style="font-size: 9px">
+Maat
+</td>
+<td style="font-size: 9px">
+:
+</td>
+
+
+<td style="font-size: 9px">
+<select name="maat" style="width: 70px">
+%MAAT_OPTIONS%
+</select>
+&nbsp;
+<!--
+<a href="#" onclick="document.getElementById('infolayerShirt').style.visibility = 'visible';"><img src="../images/knop_maattabel.png" border=0></a>
+-->
+<a href="../info/shirt.html" ><img src="../images/knop_maattabel.png" border=0></a>
+
+</td>
+</tr>
+
+
+<tr>
+<td style="font-size: 9px">
+Aantal
+</td>
+<td style="font-size: 9px">
+:
+</td>
+<td style="font-size: 9px">
+<input name="aantal" type="text" style="font-size: 9px" size=14 value="1" style="width: 70px">
+&nbsp;
+<a href="#" onclick="bestel()"><img src="../images/knop_bestellen.png" border=0></a>
+
+<td>
+</td>
+</tr>
+
+
+<tr>
+<td colspan=3 style="font-size: 9px">
+* Prijs is incl. BTW en excl. verzendkosten<br>
+** De kleur 'roze' is fluoriserend (indien gebruikt)
+</td>
+</tr>
+
+
+</table>
+</form>
+
+</p>
+
+
+</div>
+
+</div>
+
+
+
+<div id="besteld" style="position: absolute; left: 40px; top: 100px; width:550px; height:100px; border:1px double #000;background-color:#AAA;visibility:hidden ">
+<p>
+<br>
+&nbsp;<b>Dit item is toegevoegd aan het winkelmandje.</b><br>
+<br>
+&nbsp;<small>Het winkelwagentje is te openen via het winkelwagen icoontje bovenin de pagina.</small>
+<br>
+<br>
+
+&nbsp;<a href="#" onclick="document.getElementById('besteld').style.visibility = 'hidden';"><img src="../images/knop_verderwinkelen.png" border=0></a>
+<a href="#" onclick="window.location.href='http://www.shirtskv.nl/scripts/cart.php';"><img src="../images/knop_winkelwagenopenen.png" border=0></a>
+<br>
+</p>
+</div>
+
+
+
+</div>
+
+
+
+
+%GLOBAL_FOOTER%

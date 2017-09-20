@@ -1,0 +1,72 @@
+%GLOBAL_HEADER%
+
+<script type="text/javascript" >
+var forumReq;
+
+function addForum() {
+   newRequest();
+   logReq = req;
+   logReq.open("POST", "http://www.shirtskv.nl/scripts/addforum.php", false);
+   logReq.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+   var encoded = "";
+
+   var text=document.forumForm.elements['text'].value
+   var name=document.forumForm.elements['naam'].value
+   encoded = "text="+text+"&name="+name;
+   logReq.send(encoded);
+   window.location.href='forum.html';
+
+}
+
+
+function handler() {
+	if(this.readyState == 4 && this.status == 200) {
+		try {
+			var result = forumReq.responseText;
+			var extraText = document.getElementById('toevoegtext').innerHTML ;
+			document.getElementById('scroller').innerHTML = extraText+"<p>"+result+"</p>";
+			resize();
+		} catch (e) {
+		}
+	}
+}
+
+function loadForum() {
+   newRequest();
+   forumReq = req;
+   forumReq.open("POST", "http://www.shirtskv.nl/scripts/loadFullforum.php", true);
+   forumReq.onreadystatechange = handler;
+   forumReq.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+   var encoded = "";
+   var pagename=window.location.pathname;
+   encoded = "text="+pagename;
+   forumReq.send(encoded);
+}
+loadForum();
+
+</script>
+
+
+<div id="scroller" >
+</div>
+
+<div name="toevoegtext" id="toevoegtext" style="position: absolute; left: 590px; top: 493px;visibility:hidden">
+<p><a href="#" onclick="document.getElementById('toevoegen').style.visibility = 'visible';"><img src="../images/knop_toevoegen.png" border=0></a></p>
+</div>
+
+<div id="toevoegen" style="position: absolute; left: 400px; top: 160px; width:440px; height:240px; border:1px double #000;background-color:#aaa;visibility:hidden ">
+<br>
+<p>
+<form id="forumForm" name="forumForm">
+<p>&nbsp;Naam:</p>
+&nbsp;<input type="text" id="naam" size=65><br>
+<p>&nbsp;Tekst:</p>
+&nbsp;<textarea name="text" rows=3 cols=50></textarea>
+</form>
+&nbsp;<a href="#" onclick="addForum();"><img src="../images/knop_toevoegen.png" border=0></a>
+<a href="#" onclick="document.getElementById('toevoegen').style.visibility = 'hidden';"><img src="../images/knop_annuleren.png" border=0></a>
+</p>
+</div>
+
+%GLOBAL_FOOTER%
+

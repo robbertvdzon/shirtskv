@@ -1,0 +1,5 @@
+%XS:damesXS1
+%S:damesS1
+%M:damesM1
+%L:damesL1
+%XL:damesXL1

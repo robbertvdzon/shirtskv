@@ -1,0 +1,40 @@
+%GLOBAL_HEADER%
+
+%ALLSHIRTS_HEADER%
+
+<script type="text/javascript" >
+
+window.onscroll = function(){
+	SetDivPosition();
+}
+
+
+window.onload = function(){
+	var strCook = document.cookie;
+	if(strCook.indexOf("!~")!=0){
+		var intS = strCook.indexOf("!~");
+		var intE = strCook.indexOf("~!");
+		var strPos = strCook.substring(intS+2,intE);
+		document.body.scrollTop = strPos;
+	}
+	resize();
+}
+
+function SetDivPosition(){
+	var intY = document.body.scrollTop;
+    document.cookie = "yPos=!~" + intY + "~!";
+}
+
+</script>
+
+
+<div id="scroller" onscroll="SetDivPosition()">
+<table>
+<tr>
+%ROWS%
+</tr>
+</table>
+</div>
+
+%GLOBAL_FOOTER%
+

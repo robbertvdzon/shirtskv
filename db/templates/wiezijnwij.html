@@ -1,0 +1,88 @@
+%GLOBAL_HEADER%
+
+<script language='javascript' type="text/javascript" >
+var lastLayer="%EERSTE_KLEUR%";
+
+function showLayer(layerName) {
+	document.getElementById(lastLayer).style.visibility = 'hidden';
+	document.getElementById(layerName).style.visibility = 'visible';
+	lastLayer = layerName;
+}
+
+function bestel() {
+
+	document.getElementById('besteld').style.visibility = 'visible';
+	newRequest();
+	req.open("POST", "http://www.shirtskv.nl/scripts/cart.php", false);
+	req.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+	var encoded = "";
+
+	var aantal=document.bestelForm.elements['aantal'].value
+	var productcode="s.001";
+	encoded = "action=add&qty="+aantal+"&id="+productcode+"&image=../images/boek.png&url=../spreukenmarijn.html";
+
+	req.send(encoded);
+	loadWinkelwagenCount();
+}
+
+</script>
+
+
+<style type="text/css">
+#infoData {
+     width:410px;
+     height:340px;
+     left:395px;
+     top:60px;
+     position:absolute;
+     margin:50px auto;
+     overflow:auto;
+ }
+#sluitLayer {
+     width:150px;
+     height:30px;
+     left:820px;
+     top:382px;
+     position:absolute;
+     margin:50px auto;
+     overflow:auto;
+ }
+#infolayerShirt {
+    width:1000px;
+    height:550px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin:-275px auto auto -500px;
+    visibility:hidden;
+ }
+</style>
+
+
+<div id="scroller" >
+
+
+
+<p style="font-size: 10px">
+
+<b>Wie zijn wij?</b><br><br>
+ShirtsKV.nl is een webwinkel waar je makkelijk originele T-shirts, truien, kindershirts, tassen, schilderijen en reproducties op diverse formaten kunt kopen. KV staat voor Karen Vleugel en voor café waar de schilderijen worden geexposeerd. <br>
+Sinds mei 2009 is shirtsKV.nl online. Karen maakt al heel lang krabbeltjes op papier, die ze sinds een paar jaar omzet in schilderijen en die zijn als origineel of als reproductie te koop via de webshop. We hebben een plotter en een pers aangeschaft om de shirts/tassen te bedrukken. ShirtsKV.nl bestaat uit Karen Vleugel en Robbert van der Zon. Karen maakt de schilderijen en heeft de site ontworpen. Robbert heeft de site gebouwd. Samen staan we ook op kunstmarkten en bedrukken we de shirts/tassen.
+<br><br>
+Alle shirts/tassen worden met de hand en per stuk bedrukt. Je kunt het eventueel strijken en de print gaat niet barsten. Het gebruikte voor op shirs materiaal heet 'flex'. Het materiaal wordt gesneden op een snijplotter en de restvorm moet worden verwijderd. De afdruk blijft over. Vervolgens wordt de transfer aangebracht op textiel middels een hitte-pers. Hierdoor wordt de lijmlaag actief en vindt een zeer goede hechting op het textiel plaats. Flex-transfers voelen wat 'rubber-achtig' aan.
+<br><br>
+<b>Klik <a href="makingof.html" >[hier]</a> om te zien hoe een shirt wordt gedrukt.</b>
+<br><br>
+Sinds mei 2009 is shirtsKV.nl online.  <br><br>
+<a href="/images/nieuws/krant/krant3.pdf"> <img src=/images/nieuws/krant/krant2.jpg border=0></a>
+
+
+
+
+</div>
+
+
+</div>
+
+
+%GLOBAL_FOOTER%
