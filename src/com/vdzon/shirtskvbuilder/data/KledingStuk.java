@@ -48,11 +48,11 @@ public class KledingStuk {
         StringTokenizer st = new StringTokenizer(maten, "\n", false);
         this.alleMaten = "";
         while (st.hasMoreTokens()) {
-            String line = st.nextToken();
+            String line = st.nextToken().trim();
             StringTokenizer st2 = new StringTokenizer(line, ":", false);
-            String maat = st2.nextToken();
+            String maat = st2.nextToken().trim();
             if (maat.startsWith("%")) maat = maat.substring(1);
-            String prijsCode = st2.nextToken();
+            String prijsCode = st2.nextToken().trim();
             Kledingmaat kledingmaat = new Kledingmaat();
             kledingmaat.kledingStuk = this;
             kledingmaat.maat = maat;

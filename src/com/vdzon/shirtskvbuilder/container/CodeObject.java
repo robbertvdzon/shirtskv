@@ -25,8 +25,8 @@ public class CodeObject {
             try{
                 CodeObject codeObject = new CodeObject();
                 codeObject.code = Integer.parseInt(st.nextToken());
-                codeObject.key = st.nextToken();
-                if (st.hasMoreTokens()) codeObject.omschrijving = st.nextToken();
+                codeObject.key = st.nextToken().trim();
+                if (st.hasMoreTokens()) codeObject.omschrijving = st.nextToken().trim();
 
                 return codeObject;
             }

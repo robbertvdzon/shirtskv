@@ -29,14 +29,14 @@ public class PrijslijstObject {
         if (st.countTokens()==9){
             try{
                 PrijslijstObject codeObject = new PrijslijstObject();
-                codeObject.ID = st.nextToken();
+                codeObject.ID = st.nextToken().trim();
                 codeObject.price = Integer.parseInt(st.nextToken());
-                codeObject.imageSmall = st.nextToken();
-                codeObject.imageLarge = st.nextToken();
-                codeObject.omschrijving = st.nextToken();
+                codeObject.imageSmall = st.nextToken().trim();
+                codeObject.imageLarge = st.nextToken().trim();
+                codeObject.omschrijving = st.nextToken().trim();
                 codeObject.verzendkosten = Integer.parseInt(st.nextToken());
-                codeObject.imageURL = st.nextToken();
-                codeObject.detailURL = st.nextToken();
+                codeObject.imageURL = st.nextToken().trim();
+                codeObject.detailURL = st.nextToken().trim();
 
                 return codeObject;
             }

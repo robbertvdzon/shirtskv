@@ -36,7 +36,7 @@ public class CodeTable {
         if (file==null) return;
         StringTokenizer st = new StringTokenizer(file, "\n", false);
         while (st.hasMoreTokens()) {
-            String line = st.nextToken();
+            String line = st.nextToken().trim();
             CodeObject codeObject = CodeObject.load(line);
             if (codeObject!=null){
                 addObject(codeObject);

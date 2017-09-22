@@ -1,6 +1,8 @@
 <html>
 <head>
 <title>%PAGE_TITLE%</title>
+<link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Neucha' rel='stylesheet' type='text/css'>
 <meta name="description" content="shirtsKV.nl is een webshop vol leuke vrolijke schilderijen, kleding en tassen voor volwassenen, jeugd, kinderen en baby's voor een betaalbare prijs">
 <meta name="keywords" content="leuk,vrolijk,t-shirt,shirt,schilderij,tas,kind,dames,heren,baby">
 %EXTRA_METADATA%
@@ -208,6 +210,34 @@ A:visited {color: #000000;text-decoration : none;}
 A:active {color: #000000;text-decoration : none;}
 A:hover {color: #ff0000;text-decoration : none;}
 
+a.menu_selected,
+a.menu_not_selected
+{
+    /*    font-family: Myriad Pro, Myriad, Helvetica, Verdana, Arial, Helvetica, sans-serif;*/
+
+    font-family: 'Neucha', cursive;
+}
+
+
+a.menu_selected:link,
+a.menu_selected:visited,
+a.menu_selected:active,
+a.menu_selected:hover
+{
+    color: #000000;
+    font-size: 18px;
+    text-decoration:underline;
+}
+
+a.menu_not_selected:link,
+a.menu_not_selected:visited,
+a.menu_not_selected:active,
+a.menu_not_selected:hover
+{
+    color: #666666;
+    font-size: 18px;
+    text-decoration:none;
+}
 
 /* Default fields */
 td, th, p, ul, ol, li, sub, sup {
@@ -228,15 +258,13 @@ body {
 #scroller {
      width:700px;
      left:165px;
-     top:110px;
+     top:176px;
      position:absolute;
      border:0px double #000;
      background-color:#fff;
-     margin:50px auto;
+     margin:0px auto;
      overflow:auto;
 	 min-height:550px;
-	 height: expression( this.scrollHeight < 550 ? "550px" : "auto" )
-
  }
 
 #screenCenter {
@@ -249,130 +277,35 @@ body {
     background-color:transparent;
 }
 
-#screenCenterLayer2 {
-    width:1000px;
-    position:absolute;
-    top:0;
-    left:50%;
-    margin:0px auto auto -500px;
-    border:0px solid #F00;
-    background-color:transparent;
-}
-
-
 #backgroundImageMiddle {
     width:1000px;
     height:100%;
     position:absolute;
-    top:115;
+    top:176px;
     left:50%;
     margin:0px auto auto -500px;
     border:0px solid #0f0;
     background-color:#fff;
-    background-image: url(../images/achtergrond_midden.png);
     background-color:transparent;
 }
 
-#backgroundImageLineAbove {
-    width:1000px;
-    height:3px;
-    position:absolute;
-    top:112;
-    left:50%;
-    margin:0px auto auto -500px;
-    background-color:#0ff;
-    background-image: url(../images/lijn.png);
-    background-color:transparent;
-    border:0px solid #FF0;
-    background-repeat:no-repeat;
-}
 
-#backgroundImageLineBelow {
-    width:1000px;
-    height:3px;
+
+#headerImage {
+    width:100%;
+    height:176px;
     position:absolute;
-    top:215;
-    left:50%;
-    margin:0px auto auto -500px;
+    top:0px;
+    left:0px;
     border:0px solid #0f0;
     background-color:#fff;
-    background-image: url(../images/lijn.png);
+    background-image: url(../images/webwinkel-top.png);
     background-color:transparent;
-    background-repeat:no-repeat;
-    visibility:hidden;
 }
-
-
-#backgroundImageAll {
-    width:1000px;
-    height:100%;
-    position:absolute;
-    top:0;
-    left:50%;
-    margin:0px auto auto -500px;
-    border:0px solid #00f;
-    background-color:#fff;
-    background-image: url(../images/achtergrond_jute.png);
-    background-repeat:repeat-y;
-}
-
-#bottomlayer {
-    width:1000px;
-    height:30px;
-    position:absolute;
-    top:0;
-    left:50%;
-    margin:0px auto auto -500px;
-    border:0px solid #00f;
-    background-color:#fff;
-    background-repeat:repeat-y;
-    background-color:transparent;
-    visibility:hidden;
-
-}
-
-
 
 </style>
 
 
-<script type="text/javascript">
-
-
-
-function resize(){
-
-
-  var htmlheight = document.getElementById('scroller').scrollHeight;
-  if (htmlheight<550) htmlheight = 550;
-  htmlheight = htmlheight + 100;//top scroller
-
-  var pageheight = htmlheight + 150;//extra
-
-  var frameMiddle = document.getElementById('backgroundImageMiddle');
-  var framePage = document.getElementById('backgroundImageAll');
-  var bottomlayerPage = document.getElementById('bottomlayer');
-  var bottomlinePage = document.getElementById('backgroundImageLineBelow');
-
-
-  try{
-  		frameMiddle.style.height = htmlheight + "px";
-  		var pageheight=htmlheight+160;
-  		framePage.style.height = pageheight + "px";
-  		var topBottom=pageheight-45;
-  		bottomlayerPage.style.top = topBottom + "px";
-  		bottomlinePage.style.top = topBottom + "px";
- }
- catch(err)
- {
-       alert("error");
- }
- bottomlayerPage.style.visibility="visible";
- bottomlinePage.style.visibility="visible";
-
-}
-
-</script>
 
 
 <script type="text/javascript">
@@ -414,88 +347,24 @@ window.onload=resize;
 
 
 
-<div id="backgroundImageAll" name="backgroundImageAll">
+<div id="headerImage" name="headerImage">
 </div>
 
 
 
-<div id="screenCenterLayer2" >
-
-	<div style="position: absolute; left: 0px; top: 130px;">
-	<img src="../images/subbuttons/achtergr-vis.png" border=0  title="">
-	</div>
-
-	<div style="position: absolute; left: 280px; top: 0px;">
-	<img src="../images/subbuttons/achtergr-opzekop.png" border=0  title="">
-	</div>
-
-	<div style="position: absolute; left: 880px; top: 0px;">
-	<img src="../images/subbuttons/achtergr-arm.png" border=0  title="">
-	</div>
-
-	<div style="position: absolute; left: 65px; top: 300px;">
-	<img src="../images/subbuttons/achtergr-huisstofmijt.png" border=0  title="">
-	</div>
-
-	<div style="position: absolute; left: 0px; top: 0px;">
-	<a href="../index.html">
-	<img src="../images/logo_shirtskv.png" border=0 alt="shirtskv-logo" title="">
-	</a>
-	</div>
-
-
-</div>
 
 <div id="backgroundImageMiddle" name="backgroundImageMiddle" >
 </div>
 
 
-<div id="backgroundImageLineAbove" name="backgroundImageLineAbove" >
-</div>
 
-<div id="backgroundImageLineBelow" name="backgroundImageLineBelow" >
-</div>
-
-
-
-<div id="bottomlayer" name="bottomlayer" >
-
-	<div style="position: absolute; left: 150px; top: 5px;">
-	<a href="../info/info.html" >
-	<img src="../images/subbuttons/bottom-voorwaarden.png" border=0 alt="shirtskv-voorwaarden" title="">
-	</a>
-
-	<img src="../images/subbuttons/bottom-sterretje.png" border=0 >
-
-	<a href="../info/contact.html" >
-	<img src="../images/subbuttons/bottom-contact.png" border=0 alt="shirtskv-contact" title="">
-	</a>
-
-	<img src="../images/subbuttons/bottom-sterretje.png" border=0 >
-
-	<a href="http://www.shirtskv.nl/scripts/cart.php" >
-	<img src="../images/subbuttons/bottom-winkelwagen.png" border=0 alt="shirtskv-winkelwagen" title="">
-	</a>
-	</div>
-
-	<div style="position: absolute; left: 640px; top: 10px;">
-	<a target=_blank href="http://www.karenvleugel.nl" >
-	<img src="../images/karenvleugel.png" border=0 alt="www.karenvleugel.nl" title="">
-	</a>
-	</div>
-
-</div>
-
-
-<div id="screenCenter" name="screenCenter">
 
 
 
 
 
-<div style="position: absolute; left: 443px; top: 0px;">
-<img src="%HEADER_IMAGE%" border=0 alt="shirtskv-header" title="">
-</div>
+<div id="screenCenter" name="screenCenter">
+
 
 
 
@@ -514,68 +383,115 @@ window.onload=resize;
 
 
 <div style="position: absolute; left: 20px; top: 180px; ">
-<a href="../kleding.html" onmouseover="shirt_plaatje.src='../images/shirt2.png';" onmouseout="shirt_plaatje.src='../images/shirt.png';"><img name="shirt_plaatje" src="../images/shirt.png" border=0 alt="shirtskv-shirts" title=""></a>
+
+    <br>
+    <a href="/index.html" class='menu_not_selected'>home</a>
+
+    <br>
+    <img src="../images/webwinkel-stippellijn.png" border=0 title="">
+    <br>
+    <a href="../herenshirts" class='menu_not_selected'>T-shirt man</a>
+
+    <br>
+    <img src="../images/webwinkel-stippellijn.png" border=0 title="">
+    <br>
+    <a href="../damesshirts" class='menu_not_selected'>T-shirt dames</a>
+
+    <!--<br>-->
+    <!--<img src="../images/webwinkel-stippellijn.png" border=0 title="">-->
+    <!--<br>-->
+    <!--<a href="../karton" class='menu_not_selected'>karton</a>-->
+
+    <!--<br>-->
+    <!--<img src="../images/webwinkel-stippellijn.png" border=0 title="">-->
+    <!--<br>-->
+    <!--<a href="../papier" class='menu_not_selected'>papier</a>-->
+
+    <br>
+    <img src="../images/webwinkel-stippellijn.png" border=0 title="">
+    <br>
+    <a href="../kartonklein" class='menu_not_selected'>Karton klein</a>
+
+    <br>
+    <img src="../images/webwinkel-stippellijn.png" border=0 title="">
+    <br>
+    <a href="../kartongroot" class='menu_not_selected'>Karton groot</a>
+
+    <br>
+    <img src="../images/webwinkel-stippellijn.png" border=0 title="">
+    <br>
+    <a href="../pimpapainting" class='menu_not_selected'>Pimp a painting</a>
+
+
+
+    <br>
+    <img src="../images/webwinkel-stippellijn.png" border=0 title="">
+    <br>
+    <a href="https://www.werkaandemuur.nl/nl/beeldmaker/karen-vleugel/7877" target=_blank class='menu_not_selected'>canvas</a>
+
+    <!--<br>-->
+    <!--<img src="../images/webwinkel-stippellijn.png" border=0 title="">-->
+    <!--<br>-->
+    <!--<a href="../pimp" class='menu_not_selected'>PIMP</a>-->
+
+    <!--<br>-->
+    <!--<img src="../images/webwinkel-stippellijn.png" border=0 title="">-->
+    <!--<br>-->
+    <!--<a href="../repro" class='menu_not_selected'>repro</a>-->
+
+    <!--<br>-->
+    <!--<img src="../images/webwinkel-stippellijn.png" border=0 title="">-->
+    <!--<br>-->
+    <!--<a href="../puzzel" class='menu_not_selected'>puzzel</a>-->
+
+    <!--<br>-->
+    <!--<img src="../images/webwinkel-stippellijn.png" border=0 title="">-->
+    <!--<br>-->
+    <!--<a href="../uitverkoop" class='menu_not_selected'>uitverkoop</a>-->
+
+    <br>
+    <img src="../images/webwinkel-stippellijn.png" border=0 title="">
+    <br>
+    <a href="../videos.html" class='menu_not_selected'>video</a>
+
+    <br>
+    <img src="../images/webwinkel-stippellijn.png" border=0 title="">
+    <br>
+    <a href="../wiezijnwij.html" class='menu_not_selected'>wie</a>
+
+    <br>
+    <img src="../images/webwinkel-stippellijn.png" border=0 title="">
+    <br>
+    <a target=_blank href="http://karenvleugel.tumblr.com/" class='menu_not_selected'>werk in uitvoering</a>
+
+    <br>
+    <img src="../images/webwinkel-stippellijn.png" border=0 title="">
+    <br>
+    <a target=_blank href="http://www.karenvleugel.nl" class='menu_not_selected'>portfolio</a>
+
+    <br>
+    <img src="../images/webwinkel-stippellijn.png" border=0 title="">
+    <br>
+    <a href="../info/info.html" class='menu_not_selected'>voorwaarden</a>
+
+    <br>
+    <img src="../images/webwinkel-stippellijn.png" border=0 title="">
+    <br>
+    <a href="../info/contact.html" class='menu_not_selected'>contact</a>
+
 </div>
 
-<div style="position: absolute; left: 20px; top: 280px;">
-<a href="../doeken.html" onmouseover="schilderij_plaatje.src='../images/schilderij2.png';" onmouseout="schilderij_plaatje.src='../images/schilderij.png';"><img name="schilderij_plaatje" src="../images/schilderij.png" border=0 alt="shirtskv-schilderij" title=""></a>
-</div>
-<!--
-<div style="position: absolute; left: 20px; top: 380px;">
-<a href="../tassen.html" onmouseover="tas_plaatje.src='../images/tas2.png';" onmouseout="tas_plaatje.src='../images/tas.png';"><img name="tas_plaatje" src="../images/tas.png" border=0 alt="shirtskv-tas" title=""></a>
-</div>
--->
-<div style="position: absolute; left: 30px; top: 380px;">
-<a href="../spreukenboekje/spreukenboekje.html" onmouseover="boek_plaatje.src='../images/boek.png';" onmouseout="boek_plaatje.src='../images/boek2.png';"><img name="boek_plaatje" src="../images/boek2.png" border=0 alt="Spreuken Marijn" title=""></a>
-</div>
-
-<div style="position: absolute; left: 20px; top: 490px;">
-<a href="../kleurplaat/kleurplaten.html" onmouseover="kleurplaat_plaatje.src='../images/kleuren2.png';" onmouseout="kleurplaat_plaatje.src='../images/kleuren1.png';"><img name="kleurplaat_plaatje" src="../images/kleuren1.png" border=0 alt="shirtskv-kleurplaat" title=""></a>
-</div>
-
-<div style="position: absolute; left: 880px; top: 110px;">
-<a href="http://www.facebook.com/pages/shirtsKVnl/106792909359371" target=_blank>
-<img src="../images/subbuttons/facebook.png" border=0 alt="shirtskv-logo" title="">
-</a>
-</div>
-
-<div style="position: absolute; left: 880px; top: 160px;">
-<a href="http://shirtskv.hyves.nl" target=_blank>
-<img src="../images/subbuttons/hyves.png" border=0 alt="shirtskv-logo" title="">
-</a>
-</div>
-
-<div style="position: absolute; left: 880px; top: 210px;">
-<a href="http://twitter.com/shirtskv" target=_blank>
-<img src="../images/subbuttons/twitter.png" border=0 alt="shirtskv-logo" title="">
-</a>
-</div>
 
 
 
 <div style="position: absolute; left: 900px; top: 270px;">
-<a href="http://www.shirtskv.nl/scripts/cart.php" onmouseover="winkelwagen_plaatje.src='../images/winkelwagen2.png';" onmouseout="winkelwagen_plaatje.src='../images/winkelwagen.png';"><img name="winkelwagen_plaatje" src="../images/winkelwagen.png" border=0 alt="shirtskv-winkelwagen" title=""></a>
 </div>
 
-
-<div style="position: absolute; left: 900px; top: 350px;">
-<a href="../wiezijnwij.html" onmouseover="wij_plaatje.src='../images/wij.png';" onmouseout="wij_plaatje.src='../images/wij2.png';"><img name="wij_plaatje" src="../images/wij2.png" border=0 alt="Wie zijn wij" title=""></a>
+<div style="position: absolute; left: 900px; top: 220px;">
+    <a href="http://www.shirtskv.nl/scripts/cart.php" onmouseover="winkelwagen_plaatje.src='../images/winkelwagen2.png';" onmouseout="winkelwagen_plaatje.src='../images/winkelwagen.png';"><img name="winkelwagen_plaatje" src="../images/winkelwagen.png" border=0 alt="shirtskv-winkelwagen" title=""></a>
 </div>
 
-
-<div style="position: absolute; left: 900px; top: 435px;">
-<a href="../nieuwsbrief/nieuwsbrieven.html" onmouseover="nieuwsbrief_plaatje.src='../images/nwsbrf2.png';" onmouseout="nieuwsbrief_plaatje.src='../images/nwsbrf.png';"><img name="nieuwsbrief_plaatje" src="../images/nwsbrf.png" border=0 alt="shirtskv-nieuwsbrief" title=""></a>
-</div>
-
-<div style="position: absolute; left: 890px; top: 520px;">
-<a href="../fotos/fotos.html" onmouseover="fototoestel_plaatje.src='../images/fototoestel2.png';" onmouseout="fototoestel_plaatje.src='../images/fototoestel.png';"><img name="fototoestel_plaatje" src="../images/fototoestel.png" border=0 alt="shirtskv-fototoestel" title=""></a>
-</div>
-
-<div style="position: absolute; left: 890px; top: 615px;">
-<a href="../videos.html" onmouseover="filmcamera_plaatje.src='../images/filmcamera2.png';" onmouseout="filmcamera_plaatje.src='../images/filmcamera.png';"><img name="filmcamera_plaatje" src="../images/filmcamera.png" border=0 alt="shirtskv-filmcamera" title=""></a>
-</div>
-
-<div id="winkelwagencounter" style="position: absolute; left: 890px; top: 338px;">
+<div id="winkelwagencounter" style="position: absolute; left: 890px; top: 288px;">
 </div>
 
 

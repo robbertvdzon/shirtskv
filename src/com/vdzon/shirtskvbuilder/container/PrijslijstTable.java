@@ -32,7 +32,7 @@ public class PrijslijstTable {
         }
         StringTokenizer st = new StringTokenizer(file, "\n", false);
         while (st.hasMoreTokens()) {
-            String line = st.nextToken();
+            String line = st.nextToken().trim();
             PrijslijstObject prijslijstObject = PrijslijstObject.load(line);
             if (prijslijstObject != null) {
                 addObject(prijslijstObject);

@@ -1,5 +1,0 @@
-%S:herenS1
-%M:herenM1
-%L:herenL1
-%XL:herenXL1
-%XXL:herenXXL1

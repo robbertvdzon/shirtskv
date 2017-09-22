@@ -27,8 +27,8 @@ public class Doek {
     public void load(File schilderijFolder,CodeTable reproMaat) throws Exception {
         fullName = schilderijFolder.getName().substring(2);
         StringTokenizer stNaam = new StringTokenizer(fullName, ".", false);
-        this.name = stNaam.nextToken();
-        this.maat = stNaam.nextToken();
+        this.name = stNaam.nextToken().trim();
+        this.maat = stNaam.nextToken().trim();
         this.imageName = "../images/schilderijen/" +doeksoort.doeksoort+"/"+schilderijFolder.getName()+"/image.png";
         this.reproImageName = "../images/schilderijen/" +doeksoort.doeksoort+"/"+schilderijFolder.getName()+"/repro.png";
 
@@ -57,15 +57,21 @@ public class Doek {
                                                  "\\maten.txt"));
         StringTokenizer st = new StringTokenizer(maten, "\n", false);
         while (st.hasMoreTokens()) {
-            String line = st.nextToken();
+            String line = st.nextToken().trim();
             StringTokenizer st2 = new StringTokenizer(line, ":", false);
-            String maat = st2.nextToken();
+            if (!st2.hasMoreElements()){
+                throw new RuntimeException("Ongeldig formaat");
+            }
+            String maat = st2.nextToken().trim();
             if (maat.startsWith("!")) maat = maat.substring(1);
-            String prijsCode = st2.nextToken();
+            String prijsCode = st2.nextToken().trim().trim();
 
             Repro doekmaat = new Repro();
             doekmaat.maat = maat;
             doekmaat.prijsCode = prijsCode;
+            if (Data.data.prijsLijst.get(prijsCode)==null){
+                System.out.println("Prijs voor "+prijsCode+" kon niet gevonden worden");
+            }
             doekmaat.priceInCents = ((Integer)Data.data.prijsLijst.get(prijsCode)).intValue();
             doekmaat.verzendkosten = ((Integer)Data.data.verzendkostenPrijsLijst.get(prijsCode)).intValue();
             doekmaat.productieCode=this.reproBaseProductCode+"."+doekmaat.maat.toLowerCase();

@@ -51,7 +51,7 @@ public class Util {
         } catch (IOException e) {
         }
 
-        return result;
+        return result.trim();
     }
 
     public static boolean setFileLine(String fileName, String data) {

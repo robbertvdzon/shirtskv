@@ -51,10 +51,11 @@ public class Data {
 		String prijslijst = Util.getFileLine(new File(prijslijstFilename));
 		StringTokenizer st = new StringTokenizer(prijslijst, "\n", false);
 		while (st.hasMoreTokens()) {
-			String line = st.nextToken();
+			String line = st.nextToken().trim().trim();
 			StringTokenizer st2 = new StringTokenizer(line, ":", false);
-			String code = st2.nextToken();
-			String prijs = st2.nextToken();
+			String code = st2.nextToken().trim().trim();
+			String prijs = st2.nextToken().trim().trim();
+			System.out.println(prijs);
 			int price = Integer.parseInt(prijs);
 			Data.data.prijsLijst.put(code, new Integer(price));
 		}
@@ -65,10 +66,10 @@ public class Data {
 		String prijslijst = Util.getFileLine(new File(prijslijstFilename));
 		StringTokenizer st = new StringTokenizer(prijslijst, "\n", false);
 		while (st.hasMoreTokens()) {
-			String line = st.nextToken();
+			String line = st.nextToken().trim().trim();
 			StringTokenizer st2 = new StringTokenizer(line, ":", false);
-			String code = st2.nextToken();
-			String prijs = st2.nextToken();
+			String code = st2.nextToken().trim().trim();
+			String prijs = st2.nextToken().trim().trim();
 			int price = Integer.parseInt(prijs);
 			
 			Data.data.verzendkostenPrijsLijst.put(code, new Integer(price));

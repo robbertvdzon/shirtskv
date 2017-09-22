@@ -29,7 +29,7 @@ public class ConvertImages {
 		}
 		// String imageCommand =
 		// "\"C:\\Program Files\\IrfanView\\i_view32.exe\"  \""+sourceFilename+"\" /resize=("+width+","+height+") /resample /aspectratio "+extra+" /silent /jpgq=10 /convert=\""+destinationFilename+"\"";
-		String imageCommand = "\"C:\\Program Files\\IrfanView\\i_view64.exe\"  \""
+		String imageCommand = "\"C:\\Program Files (x86)\\IrfanView\\i_view32.exe\"  \""
 				+ sourceFilename
 				+ "\" /resize=(0,"
 				+ height
@@ -59,7 +59,7 @@ public class ConvertImages {
 		}
 		// String imageCommand =
 		// "\"C:\\Program Files\\IrfanView\\i_view32.exe\"  \""+sourceFilename+"\" /resize=("+width+","+height+") /resample /aspectratio "+extra+" /silent /jpgq=10 /convert=\""+destinationFilename+"\"";
-		String imageCommand = "\"C:\\Program Files\\IrfanView\\i_view64.exe\"  \""
+		String imageCommand = "\"C:\\Program Files (x86)\\IrfanView\\i_view32.exe\"  \""
 				+ sourceFilename
 				+ "\" /resize=("
 				+ width
