@@ -1,0 +1,163 @@
+<html>
+<head>
+<title>TEST</title>
+</head>
+
+<style type="text/css">
+
+A:link    {color: #0000ff;text-decoration : none;}
+A:visited {color: #0000ff;text-decoration : none;}
+A:active {color: #0000ff;text-decoration : none;}
+A:hover {color: #0000aa;text-decoration : none;}
+
+/* Default fields */
+body,td, th, p, ul, ol, li, sub, sup {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #000000;
+	font-size: 11px}
+</style>
+
+<body>
+
+Beste {NAME},<br>
+<br>
+Hartelijk dank voor uw bestelling.<br>
+<br>
+<b>Factuur gegevens:</b>
+<table>
+
+<tr>
+<td>Bedrijf:</td>
+<td width=20></td>
+<td>{CONTACT_FBEDRIJF}</td>
+</tr>
+
+<tr>
+<td>Naam:</td>
+<td width=20></td>
+<td>{CONTACT_FNAAM}</td>
+</tr>
+
+<tr>
+<td>Adres:</td>
+<td width=20></td>
+<td>{CONTACT_FADRES}</td>
+</tr>
+
+<tr>
+<td>Postcode:</td>
+<td width=20></td>
+<td>{CONTACT_FPOSTCODE}</td>
+</tr>
+
+<tr>
+<td>Plaats:</td>
+<td width=20></td>
+<td>{CONTACT_FPLAATS}</td>
+</tr>
+
+<tr>
+<td>Land:</td>
+<td width=20></td>
+<td>{CONTACT_FLAND}</td>
+</tr>
+
+<tr>
+<td>Telefoon:</td>
+<td width=20></td>
+<td>{CONTACT_TELEFOON}</td>
+</tr>
+
+<tr>
+<td>E-mail:</td>
+<td width=20></td>
+<td>{CONTACT_EMAIL}</td>
+</tr>
+</table>
+
+<br>
+<b>Aflever adres:</b>
+<table>
+
+<tr>
+<td>Bedrijf:</td>
+<td width=20></td>
+<td>{CONTACT_BEDRIJF}</td>
+</tr>
+
+<tr>
+<td>Naam:</td>
+<td width=20></td>
+<td>{CONTACT_NAAM}</td>
+</tr>
+
+<tr>
+<td>Adres:</td>
+<td width=20></td>
+<td>{CONTACT_ADRES}</td>
+</tr>
+
+<tr>
+<td>Postcode:</td>
+<td width=20></td>
+<td>{CONTACT_POSTCODE}</td>
+</tr>
+
+<tr>
+<td>Plaats:</td>
+<td width=20></td>
+<td>{CONTACT_PLAATS}</td>
+</tr>
+
+<tr>
+<td>Land:</td>
+<td width=20></td>
+<td>{CONTACT_LAND}</td>
+</tr>
+
+</table>
+
+{NOTES}
+
+<br>
+<b>Bestelling:</b>
+
+<br>
+<table>
+<tr>
+<td>Aantal:</td>
+<td width=20></td>
+<td>Artikel:</td>
+<td width=20></td>
+<td>Omschrijving:</td>
+<td width=20></td>
+<td>Stuks prijs:</td>
+<td width=20></td>
+<td>Totaal:</td>
+</tr>
+{ORDER}
+</table>
+<br>
+<b>Totaal prijs: {PRICE} euro</b>
+<br>
+<br>
+Graag bovenstaand bedrag overmaken op:<br>
+<table>
+<tr><td>ABN-Amro rekeningnummer</td><td>:</td><td>47.50.81.803</td></tr>
+<tr><td>Ten name van</td><td>:</td><td>shirtsKV.nl te Beverwijk</td></tr>
+<tr><td>Onder vermelding van</td><td>:</td><td>Bestelling {ORDERNR}</td></tr>
+</table>
+<br>
+Indien uw bestelling compleet op voorraad is, wordt deze per TNT Post verstuurd zodra wij uw betaling hebben ontvangen.<br>
+Vergeet u niet om bij uw betaling het ordernummer te vermelden.<br>
+<br>
+Overboekingen via de ABN AMRO Bank zien wij direct. Overboekingen via een andere bank nemen 1-2 werkdagen in beslag. 
+<br>
+Indien uw betaling niet binnen zeven dagen is ontvangen, wordt uw bestelling automatisch geannuleerd.<br>
+<br>
+Indien u verdere vragen heeft, neemt u dan gerust contact met ons op.<br>
+<br>
+Met vriendelijke groet,<br>
+shirtsKV.nl<br>
+</body>
+</html>

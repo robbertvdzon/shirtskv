@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>Rekening</title>
+
+<!--
+omschrijving:{DESCRIPTION}
+rekeningnr:{REKENINGNR}
+faktuurnr:{FAKTUURNR}
+faktuurdate:{FAKTUURDATE}
+bedrijf:{BEDRIJF}
+datum:{DATUM}
+price:{PRICE}
+btw:{PRICE_BTW}
+priceex:{PRICE_EX}
+-->
+
+
+
+<style>
+BODY{
+  background-image:url("http://www.shirtskv.nl/images/logo.gif");
+  background-position: top left;
+  background-repeat: no-repeat
+}
+
+/* Default fields */
+td, th, p, ul, ol, li, sub, sup {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #000000;
+	font-size: 11px}
+
+
+
+</style>
+
+</head>
+<body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<table><tr><td>
+
+<b><font size=5>REKENING</font></b><br>
+</td></tr></table>
+<hr>
+
+<br>
+<br>
+
+<table>
+<tr>
+<td><b>Rekeningnummer:</b></td>
+<td>{REKENINGNR}</td>
+</tr><tr>
+
+<td><b>Faktuurnummer:</b></td>
+<td>{FAKTUURNR}</td>
+</tr><tr>
+
+<td><b>Faktuurdatum:</b></td>
+<td>{FAKTUURDATE}</td>
+</tr><tr>
+
+<td><b>Invoer Datum:</b></td>
+<td>{DATUM}</td>
+</tr><tr>
+
+<td><b>Omschrijving:</b></td>
+<td>{DESCRIPTION}</td>
+</tr><tr>
+
+<td><b>Bedrijf:</b></td>
+<td>{BEDRIJF}</td>
+</tr><tr>
+
+<td><b>Totaal bedrag exclusief BTW:</b></td>
+<td>{PRICE_EX}</td>
+</tr><tr>
+<td><b>BTW:</b></td>
+<td>{PRICE_BTW}</td>
+</tr><tr>
+<td><b>Totaal bedrag inclusief BTW:</b></td>
+<td>{PRICE}</td>
+</tr><tr>
+</table>
+
+
+
+
+
+</td>
+</tr></table>
+
+</body>
+</html>

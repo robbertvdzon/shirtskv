@@ -1,0 +1,145 @@
+<html>
+<head>
+<title>Declaratie</title>
+
+<!--
+omschrijving:{DESCRIPTION}
+declaratienr:{DECLARATIENR}
+datum:{DATUM}
+price:{PRICE}
+btw:{PRICE_BTW}
+priceex:{PRICE_EX}
+-->
+
+
+
+<style>
+BODY{
+  background-image:url("http://www.shirtskv.nl/images/logo.gif");
+  background-position: top left;
+  background-repeat: no-repeat
+}
+
+/* Default fields */
+td, th, p, ul, ol, li, sub, sup {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #000000;
+	font-size: 11px}
+
+#header, #footer {
+  display: none;
+  }
+
+
+</style>
+
+</head>
+<body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<table><tr><td>
+
+<b><font size=5>DECLARATIE</font></b><br>
+</td></tr></table>
+<hr>
+<table><tr><td>
+<b>Declaratienummer: {DECLARATIENR} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Declaratie Datum: {DATUM}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Omschrijving: {DESCRIPTION}<br>
+<br>
+Betaald:[&nbsp;&nbsp;]</b>
+</td></tr></table>
+<hr>
+
+<table   border="0" >
+<tr>
+<td width=100 >Datum</td>
+<td width=900 >Omschrijving</td>
+<td width=150 >Prijs (inclusief BTW)</td>
+</tr>
+
+<tr height=60>
+<td width=100 style="border: solid 1px #000">&nbsp;</td>
+<td width=800 style="border: solid 1px #000">&nbsp;</td>
+<td width=100 style="border: solid 1px #000">&nbsp;</td>
+</tr>
+
+<tr height=60>
+<td width=100 style="border: solid 1px #000">&nbsp;</td>
+<td width=800 style="border: solid 1px #000">&nbsp;</td>
+<td width=100 style="border: solid 1px #000">&nbsp;</td>
+</tr>
+
+<tr height=60>
+<td width=100 style="border: solid 1px #000">&nbsp;</td>
+<td width=800 style="border: solid 1px #000">&nbsp;</td>
+<td width=100 style="border: solid 1px #000">&nbsp;</td>
+</tr>
+
+<tr height=60>
+<td width=100 style="border: solid 1px #000">&nbsp;</td>
+<td width=800 style="border: solid 1px #000">&nbsp;</td>
+<td width=100 style="border: solid 1px #000">&nbsp;</td>
+</tr>
+
+<tr height=60>
+<td width=100 style="border: solid 1px #000">&nbsp;</td>
+<td width=800 style="border: solid 1px #000">&nbsp;</td>
+<td width=100 style="border: solid 1px #000">&nbsp;</td>
+</tr>
+
+<tr height=60>
+<td width=100 style="border: solid 1px #000">&nbsp;</td>
+<td width=800 style="border: solid 1px #000">&nbsp;</td>
+<td width=100 style="border: solid 1px #000">&nbsp;</td>
+</tr>
+
+<tr height=60>
+<td width=100 style="border: solid 1px #000">&nbsp;</td>
+<td width=800 style="border: solid 1px #000">&nbsp;</td>
+<td width=100 style="border: solid 1px #000">&nbsp;</td>
+</tr>
+
+<tr height=60>
+<td width=100 style="border: solid 1px #000">&nbsp;</td>
+<td width=800 style="border: solid 1px #000">&nbsp;</td>
+<td width=100 style="border: solid 1px #000">&nbsp;</td>
+</tr>
+
+<tr height=60>
+<td width=100 style="border: solid 1px #000">&nbsp;</td>
+<td width=800 style="border: solid 1px #000">&nbsp;</td>
+<td width=100 style="border: solid 1px #000">&nbsp;</td>
+</tr>
+
+</tr>
+
+</table>
+
+<br>
+<br>
+
+<table>
+<tr>
+<td><b>Totaal bedrag exclusief BTW:</b></td>
+<td>{PRICE_EX}</td>
+</tr><tr>
+<td><b>BTW:</b></td>
+<td>{PRICE_BTW}</td>
+</tr><tr>
+<td><b>Totaal bedrag inclusief BTW:</b></td>
+<td>{PRICE}</td>
+</tr><tr>
+<td><b>Naam indiener:</b></td>
+<td>{NAME}</td>
+</tr><tr>
+</table>
+
+
+
+</td>
+</tr></table>
+
+</body>
+</html>

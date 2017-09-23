@@ -1,0 +1,58 @@
+<HTML>
+<HEAD>
+<TITLE>search</TITLE>
+
+<style>
+
+/* Default fields */
+td, th, p, ul, ol, li, sub, sup {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #000000;
+	font-size: 11px}
+
+#header, #footer {
+  display: none;
+  }
+
+
+</style>
+
+
+
+<SCRIPT TYPE="text/javascript">
+<!--
+
+function TestDataCheck()
+{
+document.input.price.value = document.input.price.value.replace (",", ".");
+document.input.btw.value = document.input.btw.value.replace (",", ".");
+document.input.price_ex.value = document.input.price_ex.value.replace (",", ".");
+return true;
+}
+// -->
+</SCRIPT>
+
+</HEAD>
+
+<BODY class="background" bgcolor="#FFFFFF"  >
+<p>
+<form name="input" action="scripts/addDeclaratie.php" method="get" onSubmit="return TestDataCheck()">
+
+<table>
+<td>Omschrijving</td><td>: <input type="text" name="omschrijving"> </tr><tr>
+<td>Totaal bedrag exclusief BTW</td><td>: <input type="text" name="price_ex"></tr><tr>
+<td>Totaal BTW</td><td>: <input type="text" name="btw"></tr><tr>
+<td>Totaal bedrag inclusief BTW</td><td>: <input type="text" name="price"></tr><tr>
+<td>Naam indiener</td><td>: <input type="text" name="naam" value="Karen Vleugel"></tr><tr>
+</tr>
+</table>
+
+<input type="hidden" name="order"> <br>
+<input type="submit" value="Submit">
+</form>
+
+
+</p>
+</BODY>
+</HTML>
+

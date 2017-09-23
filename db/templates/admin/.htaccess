@@ -1,0 +1,4 @@
+AuthName "Site Admin"
+AuthType Basic
+AuthUserFile /customers/f/2/f/shirtskv.nl/httpd.www/admin/.htpasswd
+require valid-user 

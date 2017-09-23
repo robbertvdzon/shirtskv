@@ -49,3 +49,6 @@
 48:spoelworm:
 49:vibra-tor:
 50:vibrator:
+51:aargh:
+52:hand:
+53:toets:

@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+<TITLE>Zoek fakturen</TITLE>
+
+<style>
+
+/* Default fields */
+td, th, p, ul, ol, li, sub, sup {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #000000;
+	font-size: 11px}
+
+#header, #footer {
+  display: none;
+  }
+
+
+</style>
+</HEAD>
+
+<BODY class="background" bgcolor="#FFFFFF"  >
+<p>
+<form name="input" action="scripts/faktuurLijst.php" method="get" target="listFrame">
+Facturen filter:
+<input type="text" name="filter"> (b.v. 2008 or 200812)
+<input type="submit" value="Submit">
+<a href="nieuwe_faktuur.html" target="_blank">Maak nieuwe faktuur</a>
+</form>
+<a href="faktuuroverzicht.html" target="_parent">[fakturen]</a>
+<a href="declaratieoverzicht.html" target="_parent">[declaraties]</a>
+<a href="rekeningoverzicht.html" target="_parent">[rekeningen]</a>
+<a href="extrainkomstenoverzicht.html" target="_parent">[extra inkomsten]</a>
+<a href="overboekingenoverzicht.html" target="_parent">[interne overboekingen]</a>
+<a href="totaaloverzicht.html" target="_parent">[totaal overzicht]</a>
+<a href="http://www.shirtskv.nl/admin/scripts/printBestellingen.php" target="_blank">[print besteloverzicht]</a>
+
+</p>
+</BODY>
+</HTML>

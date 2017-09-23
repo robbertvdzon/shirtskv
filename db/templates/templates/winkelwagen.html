@@ -1,0 +1,559 @@
+%GLOBAL_HEADER%
+
+
+<div id="scroller" >
+
+%WINKELWAGEN%
+
+</div>
+
+
+
+<div id="afrekenen" style="position: absolute; left: 50px; top: 35px; width:900px; height:470px; border:1px double #000;background-color:#aaa; visibility:hidden">
+
+<div style="position: absolute; left: 30px; top: 10px">
+
+<script language='javascript'>
+
+
+function set_cookie ( name, value, exp_y, exp_m, exp_d, path, domain, secure )
+{
+  var cookie_string = name + "=" + escape ( value );
+
+  if ( exp_y )
+  {
+    var expires = new Date ( exp_y, exp_m, exp_d );
+    cookie_string += "; expires=" + expires.toGMTString();
+  }
+
+  if ( path )
+        cookie_string += "; path=" + escape ( path );
+
+  if ( domain )
+        cookie_string += "; domain=" + escape ( domain );
+
+  if ( secure )
+        cookie_string += "; secure";
+
+  document.cookie = cookie_string;
+}
+
+function get_cookie ( cookie_name )
+{
+  var results = document.cookie.match ( '(^|;) ?' + cookie_name + '=([^;]*)(;|$)' );
+
+  if ( results )
+    return ( unescape ( results[2] ) );
+  else
+    return "";
+}
+
+function loadCookies(){
+       document.betalen.elements['bedrijf1'].value = get_cookie ( "bedrijf1" );
+       document.betalen.elements['naam1'].value = get_cookie ( "naam1" );
+       document.betalen.elements['pc1'].value = get_cookie ( "pc1" );
+       document.betalen.elements['adres1'].value = get_cookie ( "adres1" );
+       document.betalen.elements['plaats1'].value = get_cookie ( "plaats1" );
+       document.betalen.elements['land1'].value = get_cookie ( "land1" );
+       document.betalen.elements['tel1'].value = get_cookie ( "tel1" );
+       document.betalen.elements['email1'].value = get_cookie ( "email1" );
+       document.betalen.elements['bedrijf2'].value = get_cookie ( "bedrijf2" );
+       document.betalen.elements['naam2'].value = get_cookie ( "naam2" );
+       document.betalen.elements['pc2'].value = get_cookie ( "pc2" );
+       document.betalen.elements['plaats2'].value = get_cookie ( "plaats2" );
+       document.betalen.elements['adres2'].value = get_cookie ( "adres2" );
+       document.betalen.elements['land2'].value = get_cookie ( "land2" );
+       if (get_cookie ( "zelfdeAfleverAdres" )=="false"){
+       	document.betalen.elements['zelfdeAfleverAdres'].checked = false;
+       }
+       else{
+       	document.betalen.elements['zelfdeAfleverAdres'].checked = true;
+       }
+
+}
+
+function saveCookies(){
+		set_cookie ( "bedrijf1", document.betalen.elements['bedrijf1'].value);
+		set_cookie ( "naam1", document.betalen.elements['naam1'].value);
+		set_cookie ( "pc1", document.betalen.elements['pc1'].value);
+		set_cookie ( "adres1", document.betalen.elements['adres1'].value);
+		set_cookie ( "plaats1", document.betalen.elements['plaats1'].value);
+		set_cookie ( "land1", document.betalen.elements['land1'].value);
+		set_cookie ( "tel1", document.betalen.elements['tel1'].value);
+		set_cookie ( "email1", document.betalen.elements['email1'].value);
+		set_cookie ( "bedrijf2", document.betalen.elements['bedrijf2'].value);
+		set_cookie ( "naam2", document.betalen.elements['naam2'].value);
+		set_cookie ( "pc2", document.betalen.elements['pc2'].value);
+		set_cookie ( "plaats2", document.betalen.elements['plaats2'].value);
+		set_cookie ( "adres2", document.betalen.elements['adres2'].value);
+		set_cookie ( "land2", document.betalen.elements['land2'].value);
+		set_cookie ( "zelfdeAfleverAdres", document.betalen.elements['zelfdeAfleverAdres'].checked);
+}
+
+
+function showAfleverAdres() {
+	if (document.getElementById("zelfdeAfleverAdres").checked == true){
+		document.getElementById("afleverAdres").style.visibility = "hidden";
+	}
+	else{
+		document.getElementById("afleverAdres").style.visibility = "visible";
+	}
+	saveCookies();
+}
+
+
+function trim(value) {
+  value = value.replace(/^\s+/,'');
+  value = value.replace(/\s+$/,'');
+  return value;
+}
+
+function addOrderLine(){
+    pc = document.addLineForm.elements['productcode'].value;
+    maat = document.addLineForm.elements['maat'].value;
+    count = document.addLineForm.elements['count'].value;
+
+    productCode = trim(pc);
+    if (maat!=""){
+      productCode = trim(pc)+"."+trim(maat);
+    }
+
+
+	newRequest();
+	req.open("POST", "../scripts/cart.php", false);
+	req.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+	var encoded = "";
+
+	var productcode="3.0";
+	encoded = "action=add&qty="+count+"&id="+productCode;
+
+	req.send(encoded);
+	window.location.href="cart.php";
+}
+
+function betaal() {
+
+
+
+	if (%EMPTY%){
+		alert("De winkelwagen is leeg");
+		return;
+	}
+	if (document.betalen.elements['naam1'].value==""){
+		alert("Naam is niet ingevuld");
+		return;
+	}
+	if (document.betalen.elements['adres1'].value==""){
+		alert("Adres is niet ingevuld");
+		return;
+	}
+	if (document.betalen.elements['pc1'].value==""){
+		alert("Postcode is niet ingevuld");
+		return;
+	}
+	if (document.betalen.elements['plaats1'].value==""){
+		alert("Woonplaats is niet ingevuld");
+		return;
+	}
+	if (document.betalen.elements['land1'].value==""){
+		alert("Land is niet ingevuld");
+		return;
+	}
+
+
+	document.getElementById("afrekenen").style.visibility = "hidden";
+	document.getElementById("afleverAdres").style.visibility = "hidden";
+	verstuurBestelling();
+	document.getElementById("verstuurd").style.visibility = "visible";
+    }
+
+function addLine() {
+	document.getElementById("addLine").style.visibility = "visible";
+    }
+
+var req;
+
+
+// Get an XMLHttpRequest object in a portable way.
+function newRequest()
+{
+  req = false;
+  // For Safari, Firefox, and other non-MS browsers
+  if (window.XMLHttpRequest) {
+    try {
+      req = new XMLHttpRequest();
+    } catch (e) {
+      req = false;
+    }
+  } else if (window.ActiveXObject) {
+    // For Internet Explorer on Windows
+    try {
+      req = new ActiveXObject("Msxml2.XMLHTTP");
+    } catch (e) {
+      try {
+        req = new ActiveXObject("Microsoft.XMLHTTP");
+      } catch (e) {
+        req = false;
+      }
+    }
+  }
+}
+
+function verstuurBestelling() {
+	newRequest();
+	req.open("POST", "../scripts/addOrder.php", false);
+	req.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+	var encoded = "";
+	var order = "testregel";
+
+
+	encoded = encoded+"&notes="+document.betalen.elements['notes'].value;
+	encoded = encoded+"&bedrijf="+document.betalen.elements['bedrijf1'].value;
+	encoded = encoded+"&name="+document.betalen.elements['naam1'].value;
+	encoded = encoded+"&postcode="+document.betalen.elements['pc1'].value;
+	encoded = encoded+"&plaats="+document.betalen.elements['plaats1'].value;
+	encoded = encoded+"&adres="+document.betalen.elements['adres1'].value;
+	encoded = encoded+"&land="+document.betalen.elements['land1'].value;
+	encoded = encoded+"&telefoon="+document.betalen.elements['tel1'].value;;
+	encoded = encoded+"&email="+document.betalen.elements['email1'].value;;
+	encoded = encoded+"&mailto="+document.betalen.elements['email1'].value;;
+
+	if (document.getElementById("nieuwsbrief").checked == true){
+		encoded = encoded+"&nieuwsbrief=true";
+	}
+	else{
+		encoded = encoded+"&nieuwsbrief=false";
+	}
+
+
+
+	if (document.getElementById("zelfdeAfleverAdres").checked == true){
+	  encoded = encoded+"&bedrijf2="+document.betalen.elements['bedrijf1'].value;
+	  encoded = encoded+"&name2="+document.betalen.elements['naam1'].value;
+	  encoded = encoded+"&postcode2="+document.betalen.elements['pc1'].value;
+ 	  encoded = encoded+"&plaats2="+document.betalen.elements['plaats1'].value;
+	  encoded = encoded+"&adres2="+document.betalen.elements['adres1'].value;
+	  encoded = encoded+"&land2="+document.betalen.elements['land1'].value;
+	}
+	else{
+	  encoded = encoded+"&bedrijf2="+document.betalen.elements['bedrijf2'].value;
+	  encoded = encoded+"&name2="+document.betalen.elements['naam2'].value;
+	  encoded = encoded+"&postcode2="+document.betalen.elements['pc2'].value;
+	  encoded = encoded+"&plaats2="+document.betalen.elements['plaats2'].value;
+	  encoded = encoded+"&adres2="+document.betalen.elements['adres2'].value;
+	  encoded = encoded+"&land2="+document.betalen.elements['land2'].value;
+	}
+
+
+	req.send(encoded);
+	var result = req.responseText;
+
+}
+
+
+</script>
+
+
+<style type="text/css">
+.idealClass A:link	{color: #dddd00;text-decoration : none;}
+.idealClass A:visited {color: #dddd00;text-decoration : none;}
+.idealClass A:active {color: #dddd00;text-decoration : none;}
+.idealClass A:hover {color: #ffff00;text-decoration : none;}
+</style>
+
+<form name="betalen">
+<table>
+
+<tr>
+<td valign=top>
+
+<table>
+
+<tr>
+<th colspan=3 align="left">
+Faktuuradres:
+</th>
+</tr>
+
+<tr>
+<td>
+Bedrijfsnaam
+</td>
+<td>
+:
+</td>
+<td>
+<input type="text" name="bedrijf1" onchange="saveCookies();"/> (indien van toepassing)
+</td>
+</tr>
+
+<tr>
+<td>
+Naam
+</td>
+<td>
+:
+</td>
+<td>
+<input type="text" name="naam1" onchange="saveCookies();"/> (verplicht veld)
+</td>
+</tr>
+
+<tr>
+<td>
+Adres
+</td>
+<td>
+:
+</td>
+<td>
+<input type="text" name="adres1" onchange="saveCookies();" /> (verplicht veld)
+</td>
+</tr>
+
+<tr>
+<td>
+Postcode
+</td>
+<td>
+:
+</td>
+<td>
+<input type="text" name="pc1" onchange="saveCookies();"/> (verplicht veld)
+</td>
+</tr>
+
+<tr>
+<td>
+Woonplaats
+</td>
+<td>
+:
+</td>
+<td>
+<input type="text" name="plaats1" onchange="saveCookies();"/> (verplicht veld)
+</td>
+</tr>
+
+<tr>
+<td>
+Land
+</td>
+<td>
+:
+</td>
+<td>
+<input type="text" name="land1" onchange="saveCookies();"/> (verplicht veld)
+</td>
+</tr>
+
+<tr>
+<td>
+E-mail
+</td>
+<td>
+:
+</td>
+<td>
+<input type="text" name="email1" onchange="saveCookies();" />
+</td>
+</tr>
+
+<tr>
+<td>
+telefoonnr
+</td>
+<td>
+:
+</td>
+<td>
+<input type="text" name="tel1" onchange="saveCookies();" />
+</td>
+</tr>
+
+<tr>
+<td colspan=3>
+<input type="checkbox" id="zelfdeAfleverAdres" name="zelfdeAfleverAdres" onclick='showAfleverAdres();' checked/> Zelfde afleveradres als faktuuradres
+<br>
+<input type="hidden" id="nieuwsbrief" name="nieuwsbrief" value="nieuwsbrief" />
+</td>
+</tr>
+
+</table>
+
+</td>
+
+<td valign=top>
+
+<p id="afleverAdres" style="visibility:hidden">
+
+<table>
+
+<tr >
+<th colspan=3 align="left">
+Afleveradres:
+</th>
+</tr>
+
+<tr>
+<td>
+Bedrijfsnaam
+</td>
+<td>
+:
+</td>
+<td>
+<input type="text" name="bedrijf2" onchange="saveCookies();"/> (indien van toepassing)
+</td>
+</tr>
+
+
+<tr>
+<td>
+Naam
+</td>
+<td>
+:
+</td>
+<td>
+<input type="text" name="naam2" onchange="saveCookies();" />
+</td>
+</tr>
+
+<tr>
+<td>
+Adres
+</td>
+<td>
+:
+</td>
+<td>
+<input type="text" name="adres2" onchange="saveCookies();" />
+</td>
+</tr>
+
+<tr>
+<td>
+Postcode
+</td>
+<td>
+:
+</td>
+<td>
+<input type="text" name="pc2" onchange="saveCookies();" />
+</td>
+</tr>
+
+<tr>
+<td>
+Woonplaats
+</td>
+<td>
+:
+</td>
+<td>
+<input type="text" name="plaats2" onchange="saveCookies();" />
+</td>
+</tr>
+
+<tr>
+<td>
+Land
+</td>
+<td>
+:
+</td>
+<td>
+<input type="text" name="land2" onchange="saveCookies();" />
+</td>
+</tr>
+
+</tr>
+</table>
+
+</p>
+
+</td>
+</tr>
+
+
+<tr>
+<td colspan=3 align="left">
+Opmerkingen : <input type="text" name="notes" size=100/><br><br>
+</td>
+</tr>
+
+
+
+<tr>
+<th colspan=3 align="left">
+Betaling:
+</th>
+</tr>
+
+<tr>
+<td colspan=3>
+De betaling dient vooraf overgemaakt te worden.
+<br>
+<br>
+Bij het bevestigen wordt er tevens een e-mail verstuurd met daarin nogmaals de betaalgegevens.
+</td>
+</tr>
+
+</table>
+<p>
+<a href='#' onclick='document.getElementById("afrekenen").style.visibility = "hidden";document.getElementById("afleverAdres").style.visibility = "hidden";' ><img src='../images/knop_terug.png' border=0></a>
+<a href='#' onclick='betaal();' ><img src='../images/knop_bevestigen.png' border=0></a>
+</p>
+</form>
+
+</div>
+<div id="verstuurd"  style="position: absolute; left: 80px; top: 200px; width:400px; height:140px; border:1px double #000;background-color:#aaa; visibility:hidden">
+<div style="position: absolute; left: 10px; top: 10px">
+<br>
+<p>
+De bestelling is verstuurd.<br>
+Een e-mail is verstuurd als bevestiging met de betalinggegevens.
+</p>
+
+<p>
+
+<a href='#' onclick='window.location.href="cart.php";' ><img src='../images/knop_sluit.png' border=0></a></p>
+
+</div>
+</div>
+
+<div id="addLine"  style="position: absolute; left: 20px; top: 200px; width:500px; height:200px; border:1px double #000;background-color:#aaa; visibility:hidden">
+<div style="position: absolute; left: 10px; top: 10px">
+<br>
+<p>
+<b>Bestelregel toevoegen.</b><br>
+<form name="addLineForm">
+<table>
+<tr><td>Productcode</td><td>:</td><td><input type="text" size=30 name="productcode"></td></tr>
+<tr><td>Maat</td><td>:</td><td><input type="text" size=30 name="maat"> (voor de shirts en reproducties)</td></tr>
+<tr><td>Aantal</td><td>:</td><td><input type="text" size=30 name="count" value="1"></td></tr>
+</table>
+</table>
+</p>
+
+<p>
+<a href='#' onclick='addOrderLine();' ><img src='../images/knop_toevoegen.png' border=0></a>
+<a href='#' onclick='window.location.href="cart.php";' ><img src='../images/knop_sluit.png' border=0></a>
+
+</p>
+
+</div>
+</div>
+
+
+
+
+
+
+
+<script language='javascript'>
+loadCookies();
+</script>
+
+%GLOBAL_FOOTER%

@@ -1,5 +1,6 @@
 package com.vdzon.shirtskvbuilder;
 
+import java.nio.file.Files;
 import java.text.*;
 import com.vdzon.shirtskvbuilder.data.*;
 import java.awt.BorderLayout;
@@ -193,6 +194,10 @@ public class MainFrame extends JFrame {
 					"../images/subbuttons/kop-schilderijen.png");
 			TasTemplate.processTasIndexTemplate(dbTextField.getText(), "kop-shirts","../images/subbuttons/kop-tassen.png");
 
+			// copy admin pages
+			copyFolder(new File(dbTextField.getText()+"\\templates\\admin"),new File(dbTextField.getText()+"\\html\\admin"));
+			copyFolder(new File(dbTextField.getText()+"\\templates\\templates"),new File(dbTextField.getText()+"\\html\\templates"));
+
 			// copy
 			Data.data.createPricelist(dbTextField.getText());
 
@@ -203,6 +208,43 @@ public class MainFrame extends JFrame {
 			beep();
 		} catch (Exception ex) {
 			ex.printStackTrace();
+		}
+	}
+
+
+	static private void copyFolder(File src, File dest) {
+		// checks
+		if(src==null || dest==null)
+			return;
+		if(!src.isDirectory())
+			return;
+		if(dest.exists()){
+			if(!dest.isDirectory()){
+				//System.out.println("destination not a folder " + dest);
+				return;
+			}
+		} else {
+			dest.mkdir();
+		}
+
+		if(src.listFiles()==null || src.listFiles().length==0)
+			return;
+
+		for(File file: src.listFiles()){
+			File fileDest = new File(dest, file.getName());
+			//System.out.println(fileDest.getAbsolutePath());
+			if(file.isDirectory()){
+				copyFolder(file, fileDest);
+			}else{
+				if(fileDest.exists())
+					continue;
+
+				try {
+					Files.copy(file.toPath(), fileDest.toPath());
+				} catch (IOException e) {
+					//e.printStackTrace();
+				}
+			}
 		}
 	}
 

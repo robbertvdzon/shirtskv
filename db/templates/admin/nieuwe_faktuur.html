@@ -1,0 +1,132 @@
+<HTML>
+<HEAD>
+<TITLE>search</TITLE>
+
+<style>
+
+/* Default fields */
+td, th, p, ul, ol, li, sub, sup {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #000000;
+	font-size: 11px}
+
+#header, #footer {
+  display: none;
+  }
+
+
+</style>
+
+
+<script type="text/javascript">
+
+
+function validate_form(thisform)
+{
+	document.input.price.value = document.input.price.value.replace (",", ".");
+	document.input.btw.value = document.input.btw.value.replace (",", ".");
+	document.input.price_ex.value = document.input.price_ex.value.replace (",", ".");
+
+
+	thisform.order.value="";
+
+	thisform.order.value="";
+	if (thisform.aantal_1.value!=""){
+		thisform.order.value+=thisform.aantal_1.value+"\t"+thisform.product_1.value+"\t"+thisform.omschrijving_1.value+"\t"+thisform.stuksprijs_1.value+"\t"+thisform.totaalprijs_1.value+"\n";
+	}
+	if (thisform.aantal_2.value!=""){
+		thisform.order.value+=thisform.aantal_2.value+"\t"+thisform.product_2.value+"\t"+thisform.omschrijving_2.value+"\t"+thisform.stuksprijs_2.value+"\t"+thisform.totaalprijs_2.value+"\n";
+	}
+	if (thisform.aantal_3.value!=""){
+		thisform.order.value+=thisform.aantal_3.value+"\t"+thisform.product_3.value+"\t"+thisform.omschrijving_3.value+"\t"+thisform.stuksprijs_3.value+"\t"+thisform.totaalprijs_3.value+"\n";
+	}
+
+}
+</script>
+
+</HEAD>
+
+<BODY class="background" bgcolor="#FFFFFF"  >
+<p>
+<form name="input" action="scripts/addFaktuur.php" method="get" onsubmit="return validate_form(this)">
+
+<table>
+<tr>
+
+<td>Faktuur template</td><td>:
+<input type="radio" name="template" value="normaal" checked>Normaal(vooraf betaald)
+<input type="radio" name="template" value="nog_betalen">Nog betalen
+<input type="radio" name="template" value="credit">Credit (klant kijgt geld terug)
+</tr><tr>
+<td>Naam</td><td>: <input type="text" name="name"> </tr><tr>
+<td>Adres</td><td>: <input type="text" name="adres"> </tr><tr>
+<td>Postcode</td><td>: <input type="text" name="postcode"> </tr><tr>
+<td>Plaats</td><td>: <input type="text" name="plaats"> </tr><tr>
+<td>Telefoon</td><td>: <input type="text" name="telefoon"> </tr><tr>
+<td>Email</td><td>: <input type="text" name="email"> </tr><tr>
+<td>Totaal bedrag</td><td>: <input type="text" name="price"> (Bij credit faktuur hier een negatief bedrag invullen!)</tr><tr>
+<td>Order nr</td><td>: <input type="text" name="orderNr"> </tr><tr>
+</tr>
+</table>
+
+Order regels:
+<table>
+<tr>
+<td>Aantal:</td><td>Product:</td><td>Omschrijving:</td><td>Prijs per stuk:</td><td>Totaal prijs:</td>
+</tr>
+
+<tr>
+<td>
+<input type="text" name="aantal_1">
+</td><td>
+<input type="text" name="product_1">
+</td><td>
+<input type="text" name="omschrijving_1">
+</td><td>
+<input type="text" name="stuksprijs_1">
+</td><td>
+<input type="text" name="totaalprijs_1">
+</td>
+
+
+</tr><tr>
+
+<td>
+<input type="text" name="aantal_2">
+</td><td>
+<input type="text" name="product_2">
+</td><td>
+<input type="text" name="omschrijving_2">
+</td><td>
+<input type="text" name="stuksprijs_2">
+</td><td>
+<input type="text" name="totaalprijs_2">
+</td>
+
+</tr><tr>
+
+<td>
+<input type="text" name="aantal_3">
+</td><td>
+<input type="text" name="product_3">
+</td><td>
+<input type="text" name="omschrijving_3">
+</td><td>
+<input type="text" name="stuksprijs_3">
+</td><td>
+<input type="text" name="totaalprijs_3">
+</td>
+
+
+</tr>
+</table>
+
+<input type="hidden" name="order"> <br>
+<input type="submit" value="Submit">
+</form>
+
+
+</p>
+</BODY>
+</HTML>
+

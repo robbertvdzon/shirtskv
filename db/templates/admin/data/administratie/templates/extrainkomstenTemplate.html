@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>Extra Inkomsten</title>
+
+<!--
+omschrijving:{DESCRIPTION}
+extrainkomstennr:{EXTRAINKOMSTENNR}
+datum:{DATUM}
+price:{PRICE}
+btw:{PRICE_BTW}
+priceex:{PRICE_EX}
+-->
+
+
+
+<style>
+BODY{
+  background-image:url("http://www.shirtskv.nl/images/logo.gif");
+  background-position: top left;
+  background-repeat: no-repeat
+}
+
+/* Default fields */
+td, th, p, ul, ol, li, sub, sup {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #000000;
+	font-size: 11px}
+
+#header, #footer {
+  display: none;
+  }
+
+
+</style>
+
+</head>
+<body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<table><tr><td>
+
+<b><font size=5>EXTRA INKOMSTEN</font></b><br>
+</td></tr></table>
+<hr>
+<table><tr><td>
+<b>Extra Inkomsten Nummer: {EXTRAINKOMSTENNR} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Datum: {DATUM}<br></b>
+</td></tr></table>
+<hr>
+
+<table>
+<tr>
+<td><b>Omschrijving:</b></td>
+<td>{DESCRIPTION}</td>
+</tr><tr>
+<td><b>Totaal bedrag exclusief BTW:</b></td>
+<td>{PRICE_EX}</td>
+</tr><tr>
+<td><b>BTW:</b></td>
+<td>{PRICE_BTW}</td>
+</tr><tr>
+<td><b>Totaal bedrag inclusief BTW:</b></td>
+<td>{PRICE}</td>
+</tr><tr>
+</table>
+
+
+
+</td>
+</tr></table>
+
+</body>
+</html>

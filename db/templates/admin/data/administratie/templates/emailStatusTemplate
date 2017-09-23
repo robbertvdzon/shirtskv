@@ -1,0 +1,15 @@
+<html>
+<head>
+<title>{STATUS}</title>
+</head>
+<body>
+
+Beste {NAME},<br>
+<br>
+De bestelling met nummer {ORDERNR} is {STATUS}
+<br>
+<br>
+Met vriendelijke groet,<br>
+shirtsKV.nl<br>
+</body>
+</html>

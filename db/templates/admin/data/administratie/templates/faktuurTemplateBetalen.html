@@ -1,0 +1,114 @@
+<html>
+<head>
+<title>Faktuur</title>
+
+<!--
+bedrijf:{CONTACT_BEDRIJF}
+naam:{CONTACT_NAAM}
+faktuurnr:{FAKTUURNR}
+datum:{DATUM}
+ordernr:{ORDERNR}
+price:{PRICE}
+btw:{PRICE_BTW}
+priceex:{PRICE_EX}
+-->
+
+<style>
+BODY{
+  background-image:url("http://www.shirtskv.nl/images/logo.gif");
+  background-position: top left;
+  background-repeat: no-repeat
+}
+
+/* Default fields */
+td, th, p, ul, ol, li, sub, sup {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #000000;
+	font-size: 11px}
+
+#header, #footer {
+  display: none;
+  }
+
+
+</style>
+
+</head>
+<body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<table><tr><td>
+<b>Klant factuuradres</b><br>
+{CONTACT_BEDRIJF}<br>
+{CONTACT_NAAM}<br>
+{CONTACT_ADRES}<br>
+{CONTACT_POSTCODE} {CONTACT_PLAATS}<br>
+{CONTACT_LAND}<br>
+<br>
+<br>
+
+<b><font size=5>FACTUUR</font></b><br>
+</td></tr></table>
+<hr>
+<table><tr><td>
+<b>Factuurnummer: {FAKTUURNR} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Factuurdatum: {DATUM}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bestelnummer: {ORDERNR}</b><br>
+</td></tr></table>
+<hr>
+
+<table>
+<tr>
+<td></td>
+<td><b>Aantal:</b></td>
+<td width=20></td>
+<td><b>Product:</b></td>
+<td width=20></td>
+<td><b>Omschrijving:</b></td>
+<td width=20></td>
+<td><b>Stuks prijs:</b></td>
+<td width=20></td>
+<td><b>Totaal:</b></td>
+</tr>
+{ORDER}
+
+</table>
+<br>
+
+<hr>
+<table>
+<tr>
+<td>Bedrag inclusief BTW</td><td>:</td><td>{PRICE} euro</td></tr>
+<td>BTW 21%</td><td>:</td><td>{PRICE_BTW} euro</td></tr>
+<td>Bedrag exclusief BTW</td><td>:</td><td>{PRICE_EX} euro</td></tr>
+</table>
+
+<hr>
+<table><tr><td>
+Bij betaling gaarne factuurnummer vermelden.<br>
+<br>
+<br>
+
+<table>
+<tr><td>ABN-Amro rekeningnummer</td><td>:</td><td>NL12ABNA047.50.81.803</td></tr>
+<tr><td>BTW-nr</td><td>:</td><td>NL1910.25.665.B01</td></tr>
+<tr><td>Handelsregister</td><td>:</td><td>34303073</td></tr>
+</table>
+
+<br>
+
+<table>
+<tr><td>
+Al onze producten kunnen binnen 7 werkdagen zonder opgave van reden geretourneerd worden.
+Het retourneren kan enkel als het product in zijn geheel ongebruikt is en zich in de originele verpakking bevindt.
+Voor onze garantie en algemene voorwaarden kunt u altijd terecht op onze website www.shirtskv.nl.
+<br><br>
+<b>Dank voor uw aankoop bij shirtsKV.nl</b>
+</td></tr></table>
+
+</td>
+</tr></table>
+
+</body>
+</html>
