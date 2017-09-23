@@ -58,3 +58,6 @@ truiM1:650
 truiXL1:650
 houtklein-1:650
 origmdf110x110-1:2500
+kartonopmdf61x40-1:650
+kartonopmdf30x40-1:650
+geen:0

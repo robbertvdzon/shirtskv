@@ -1,0 +1,134 @@
+%GLOBAL_HEADER%
+%ALLDOEKEN_HEADER%
+<script type="text/javascript" >
+
+function bestelOrigineel() {
+	document.getElementById('besteld').style.visibility = 'visible';
+	newRequest();
+	req.open("POST", "http://www.shirtskv.nl/scripts/cart.php", false);
+	req.setRequestHeader('Content-Type',  'application/x-www-form-urlencoded');
+	var encoded = "";
+
+	var productcode="%ORIG_PRODUCT_CODE%";
+	encoded = "action=add&qty=1&id="+productcode+"&image=%ORIGIMAGE1%&url=%ORIG_PAGE_LINK%";
+
+	req.send(encoded);
+	loadWinkelwagenCount();
+}
+
+
+</script>
+
+
+<div id="scroller" >
+
+
+<div style="position: absolute; left: 10px; top: 0px; ">
+
+<div style="position: absolute; left: 0px; top: 500px; width:260 ">
+<p style="font-size: 9px">
+* Prijs is incl. BTW en excl. verzendkosten<br>
+</p>
+
+</div>
+
+
+<div style="position: absolute; left: 0px; top: 50px; width:300; ">
+<!--<p><b>Karton op MDF '%NAME%'</b></p>-->
+</div>
+
+
+<div style="position: absolute; left: 0px; top: 80px; ">
+<a href="#" onclick="PopupPic('%IMAGE_PAGE%','title',550,550);"><img src="%THISIMAGE3%" border=0 alt="shirts-%NAME%" title=""></a><br>
+</div>
+
+
+<div style="position: absolute; left: 0px; top: 350px; width:300; ">
+    <p style="font-size: 9px">Deze schilderijen zijn geschilderd op karton en gelijmd om zwart MDF.
+</p>
+</div>
+
+
+
+<div style="position: absolute; left: 120px; top: 5px; width:160">
+<a href="%PREVIOUS_DETAIL_PAGE%"><img name="vorige_plaatje" src="../images/knop_vorige.png" border=0 alt="vorige" title=""></a>
+<a href="%NEXT_DETAIL_PAGE%"><img name="volgende_plaatje" src="../images/knop_volgende.png" border=0 alt="volgende" title=""></a>
+<a href="index.html"><img name="terug_plaatje" src="../images/knop_terug.png" border=0 alt="terug" title=""></a>
+</div>
+
+
+<div style="position: absolute; left: 0px; top: 380px; width:300;">
+<p>
+<table width=270 >
+
+<tr>
+<td colspan=3 style="font-size: 9px">
+<br><b>Bestellen:</b>
+</td>
+</tr>
+
+<tr>
+<td style="font-size: 9px">
+Maat
+</td>
+<td style="font-size: 9px">
+:
+</td>
+<td style="font-size: 9px">
+%ORIG_SIZE%
+</td>
+</tr>
+<tr>
+<td style="font-size: 9px">
+Prijs
+</td>
+<td style="font-size: 9px">
+:
+</td>
+<td style="font-size: 9px">
+%PRICE%
+</td>
+</tr>
+
+<tr>
+<td colspan=3 style="font-size: 9px">
+<a href="#" id="bestelOrigButton" onclick="bestelOrigineel()"><img src="../images/knop_bestellen.png" border=0></a>
+</td>
+</tr>
+
+</table>
+</p>
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<div id="besteld" style="position: absolute; left: 330px; top: 240px; width:550px; height:100px; border:1px double #000;background-color:#AAA;visibility:hidden ">
+<p>
+<br>
+&nbsp;<b>Het schilderij is toegevoegd aan het winkelmandje.</b><br>
+<br>
+&nbsp;<small>Het winkelwagentje is te openen via het winkelwagen icoontje bovenin de pagina.</small>
+<br>
+<br>
+
+&nbsp;<a href="#" onclick="document.getElementById('besteld').style.visibility = 'hidden';"><img src="../images/knop_verderwinkelen.png" border=0></a>
+<a href="#" onclick="window.location.href='http://www.shirtskv.nl/scripts/cart.php';"><img src="../images/knop_winkelwagenopenen.png" border=0></a>
+<br>
+</p>
+</div>
+
+</div>
+
+
+<script type="text/javascript" >
+if (%NIET_TE_KOOP% || %VERKOCHT%){
+	document.getElementById('bestelOrigButton').style.visibility = 'hidden';
+}
+</script>
+
+%GLOBAL_FOOTER%

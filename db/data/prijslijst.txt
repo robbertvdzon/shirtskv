@@ -58,3 +58,6 @@ truiS1:3495
 truiL1:3495
 truiM1:3495
 truiXL1:3495
+kartonopmdf61x40-1:2750
+kartonopmdf30x40-1:1750
+geen:0

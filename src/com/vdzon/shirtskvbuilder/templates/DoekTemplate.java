@@ -55,7 +55,22 @@ public class DoekTemplate {
 			schilderijDetailTemplate = Util.getFileLine(new File(
 					basedir
 					+ "\\templates\\houtschilderijdetail.html"));
-		}		
+		}
+		if (subdir.equals("kartongroot")){
+			schilderijDetailTemplate = Util.getFileLine(new File(
+					basedir
+							+ "\\templates\\kartonschilderijdetail.html"));
+		}
+		if (subdir.equals("kartonklein")){
+			schilderijDetailTemplate = Util.getFileLine(new File(
+					basedir
+							+ "\\templates\\kartonschilderijdetail.html"));
+		}
+		if (subdir.equals("pimpapainting")){
+			schilderijDetailTemplate = Util.getFileLine(new File(
+					basedir
+							+ "\\templates\\pimpschilderijdetail.html"));
+		}
 		String schilderijImageTemplate = Util.getFileLine(new File(
 				basedir
 				+ "\\templates\\schilderijimage.html"));
@@ -218,8 +233,13 @@ public class DoekTemplate {
 					.replaceAll("%ORIG_SIZE%", doek.maat);
 			origDetailPage = origDetailPage.replaceAll("%PAGE_TITLE%",
 					"ShirtsKV.nl - Schilderij '" + doek.name + "'");
-			origDetailPage = origDetailPage.replaceAll("%MIN_PRICE%", "&euro; "
-					+ Util.convertPrice(lowestReproPrice));
+
+			String minPrice = lowestReproPrice<1 ? "" : "&euro; "
+					+ Util.convertPrice(lowestReproPrice);
+			if (lowestReproPrice<1){
+				System.out.println("");
+			}
+			origDetailPage = origDetailPage.replaceAll("%MIN_PRICE%", minPrice);
 			origDetailPage = origDetailPage.replaceAll("%REPRO_CHECKED%", "");
 			origDetailPage = origDetailPage.replaceAll("%ORIG_CHECKED%",
 					"checked");
@@ -276,8 +296,7 @@ public class DoekTemplate {
 					"_4.gif"));
 			row = row.replaceAll("%IMAGE5%", doek.imageName.replace(".png",
 					"_5.gif"));
-			row = row.replaceAll("%MIN_PRICE%", "&euro; "
-					+ Util.convertPrice(lowestReproPrice));
+			row = row.replaceAll("%MIN_PRICE%", minPrice);
 
 			row = row.replaceAll("%NAME%", doek.name);
 			rows += row;

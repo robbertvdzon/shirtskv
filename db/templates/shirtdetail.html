@@ -83,7 +83,7 @@ function bestel() {
 
 <div style="position: absolute; left: 0px; top: 0px; width:300; ">
 <p style="font-size: 10px">
-<b>"%OMSCHRIJVING%"</b>
+<!--<b>"%OMSCHRIJVING%"</b>-->
 </p>
 </div>
 
@@ -96,7 +96,7 @@ function bestel() {
 <tr>
 <td colspan=3 height=60 valign=top style="font-size: 9px">
 
-%EXTRA_TEXT%
+<!--%EXTRA_TEXT%-->
 
 </td>
 </tr>
@@ -111,17 +111,17 @@ function bestel() {
 </td>
 </tr>
 
-<tr>
-<td style="font-size: 9px">
-Code
-</td>
-<td style="font-size: 9px">
-:
-</td>
-<td style="font-size: 9px">
-%PRODUCT_CODE%
-</td>
-</tr>
+<!--<tr>-->
+<!--<td style="font-size: 9px">-->
+<!--Code-->
+<!--</td>-->
+<!--<td style="font-size: 9px">-->
+<!--:-->
+<!--</td>-->
+<!--<td style="font-size: 9px">-->
+<!--%PRODUCT_CODE%-->
+<!--</td>-->
+<!--</tr>-->
 
 
 <tr>
@@ -153,7 +153,6 @@ Maat
 <!--
 <a href="#" onclick="document.getElementById('infolayerShirt').style.visibility = 'visible';"><img src="../images/knop_maattabel.png" border=0></a>
 -->
-<a href="../info/shirt.html" ><img src="../images/knop_maattabel.png" border=0></a>
 
 </td>
 </tr>
@@ -168,12 +167,22 @@ Aantal
 </td>
 <td style="font-size: 9px">
 <input name="aantal" type="text" style="font-size: 9px" size=14 value="1" style="width: 70px">
-&nbsp;
-<a href="#" onclick="bestel()"><img src="../images/knop_bestellen.png" border=0></a>
 
 <td>
 </td>
 </tr>
+
+    <tr>
+        <td style="font-size: 9px">
+        </td>
+        <td style="font-size: 9px">
+        </td>
+        <td style="font-size: 9px">
+            <a href="#" onclick="bestel()"><img src="../images/knop_bestellen.png" border=0></a>
+        <td>
+        </td>
+    </tr>
+
 
 
 <tr>
