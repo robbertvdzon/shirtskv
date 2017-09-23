@@ -164,7 +164,7 @@ public class MainFrame extends JFrame {
 					Data.data.fotos);
 			ForumTemplate.processForum(dbTextField.getText(), "Forum", "../images/subbuttons/kop-blablabla.png");
 			InfoTemplate.processInfo(dbTextField.getText(), "Info", "../images/subbuttons/kop-informatie.png");
-			IndexTemplate.processHome(dbTextField.getText(), "Info", "../images/subbuttons/kop-welkom.png");
+//			IndexTemplate.processHome(dbTextField.getText(), "Info", "../images/subbuttons/kop-welkom.png");
 
 			NieuwsbriefTemplate.processNieuwsbrief(dbTextField.getText(), testdataCheckBox.isSelected(),"Nieuwsbrief",
 					"../images/subbuttons/kop-nieuwsbrief.png");
@@ -192,6 +192,8 @@ public class MainFrame extends JFrame {
 			DoekTemplate.processDoekIndexTemplate(dbTextField.getText(), "kop-shirts",
 					"../images/subbuttons/kop-schilderijen.png");
 			TasTemplate.processTasIndexTemplate(dbTextField.getText(), "kop-shirts","../images/subbuttons/kop-tassen.png");
+
+			// copy
 			Data.data.createPricelist(dbTextField.getText());
 
 			beep();
@@ -203,10 +205,6 @@ public class MainFrame extends JFrame {
 			ex.printStackTrace();
 		}
 	}
-
-
-
-
 
 	public void processImages() {
 		String targetBase = dbTextField.getText() + "\\html\\images";
