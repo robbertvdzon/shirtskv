@@ -210,6 +210,7 @@ public class MainFrame extends JFrame {
 
 	public void processImages() {
 		String targetBase = dbTextField.getText() + "\\html\\images";
+		ConvertImages.processTemplateImages(dbTextField.getText(),testdataCheckBox.isSelected(),targetBase);
 		ConvertImages.processFotoImages(dbTextField.getText(),testdataCheckBox.isSelected(),targetBase);
 		ConvertImages.processKledingImages(dbTextField.getText(),testdataCheckBox.isSelected(),targetBase);
 		ConvertImages.processTasImages(dbTextField.getText(),testdataCheckBox.isSelected(),targetBase);
