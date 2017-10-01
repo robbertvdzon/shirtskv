@@ -165,7 +165,7 @@ public class MainFrame extends JFrame {
 					Data.data.fotos);
 			ForumTemplate.processForum(dbTextField.getText(), "Forum", "../images/subbuttons/kop-blablabla.png");
 			InfoTemplate.processInfo(dbTextField.getText(), "Info", "../images/subbuttons/kop-informatie.png");
-//			IndexTemplate.processHome(dbTextField.getText(), "Info", "../images/subbuttons/kop-welkom.png");
+			IndexTemplate.processHome(dbTextField.getText(), "Info", "../images/subbuttons/kop-welkom.png");
 
 			NieuwsbriefTemplate.processNieuwsbrief(dbTextField.getText(), testdataCheckBox.isSelected(),"Nieuwsbrief",
 					"../images/subbuttons/kop-nieuwsbrief.png");
